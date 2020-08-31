@@ -1,0 +1,14 @@
+#card1 {
+    width: 30%;
+    margin-left: 10px;
+}
+
+.pictures {
+    margin: 10px;
+}
+
+.divItem {
+    display: inline-block;
+    width: 20%;
+    margin: 10px;
+}
