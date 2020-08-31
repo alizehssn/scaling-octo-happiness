@@ -10,5 +10,31 @@
 .divItem {
     display: inline-block;
     width: 20%;
-    margin: 10px;
+    margin: 1%;
+}
+
+.call2Main {
+    text-align: center;
+    display: inline-block;
+    width: 40%;
+    margin-left: 30%;
+}
+
+.call2Heading {
+    text-align: center;
+}
+
+.badges {
+    text-align: center;
+    display: inline-block;
+    width: 90%;
+    margin-left: 5%;
+}
+
+.call2Ingredients {
+    text-align: center;
+    display: inline-block;
+    width: 90%;
+    margin: 0 auto;
+    margin-left: 5%;
 }
