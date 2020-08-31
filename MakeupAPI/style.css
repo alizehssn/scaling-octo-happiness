@@ -1,0 +1,15 @@
+body {
+    text-align: center;
+    align-items: center;
+}
+
+.input-group {
+    width: 28%
+}
+
+.submitBtn {
+    height: 30px;
+    width: 200px;
+    position: relative;
+    border-style: solid pink;
+}
