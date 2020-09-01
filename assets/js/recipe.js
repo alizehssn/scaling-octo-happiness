@@ -40,6 +40,10 @@ function searchItem(itemToSearch2) {
 
 $("#submitButton3").on("click", function(event) {
     event.preventDefault();
+    // let checkbox1 = $("#checkbox1").val();
+    // console.log(checkbox1);
+
+
 
 
 
@@ -49,9 +53,17 @@ $("#submitButton3").on("click", function(event) {
 
 function searchItem() {
 
-
     let queryURL3 = "https://api.spoonacular.com/recipes/random?&number=5&apiKey=0ba7a0fdd45c497a8afd81dae904a16c";
-
+    let params = [];
+    $("#dietFilters").find("input").each(function() {
+            if ($(this).prop("checked") === true) {
+                params.push($(this).val())
+            }
+            // console.log($(this).val());
+        })
+        // console.log(params.join(","));
+    queryURL3 += "&tags=" + params.join(",");
+    console.log(queryURL3);
 
 
     $.ajax({
