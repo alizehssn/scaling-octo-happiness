@@ -8,47 +8,106 @@
     <title>Foundation Starter Template</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/nav.css">
-</head>
+    <link rel="stylesheet" href="./assets/css/recipe.css">
 
-<body style="background-color: grey">
+    <body style="background-color: grey">
 
-    <nav>
-        <div class="logo">
-            <h4>The Nav</h4>
-        </div>
-        <ul class="navLinks">
-            <li class="li1"><a href="#">Food</a></li>
-            <li class="li1"><a href="#">Makeup</a></li>
-            <li class="li1"><a href="#">Beer</a></li>
+        <nav>
+            <div class="logo">
+                <h4>The Nav</h4>
+            </div>
+            <ul class="navLinks">
+                <li class="li1"><a href="#">Food</a></li>
+                <li class="li1"><a href="#">Makeup</a></li>
+                <li class="li1"><a href="#">Beer</a></li>
+            </ul>
+            <div class="burger">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </nav>
+
+        <ul class="tabs" data-active-collapse="true" data-tabs id="collapsing-tabs">
+            <li class="tabs-title is-active"><a href="#panel1c" aria-selected="true">Search Recipes By Ingredients</a></li>
+            <li class="tabs-title"><a href="#panel2c">Search Recipes By Nutrients</a></li>
+            <li class="tabs-title"><a href="#panel3c">Search Random Recipes</a></li>
         </ul>
-        <div class="burger">
-            <div class="line1"></div>
-            <div class="line2"></div>
-            <div class="line3"></div>
-        </div>
-    </nav>
 
-    <form>
-        <div class="grid-container">
-            <div class="grid-x grid-padding-x">
-                <div class="medium-6 cell">
-                    <label>Search for a product
-                <input type="text" placeholder="Enter an item to search" id="searchBar">
-                <a class="button primary" id="submitButton">Submit</a>
-              </label>
+        <div class="tabs-content" data-tabs-content="collapsing-tabs">
+
+
+            <!-- This is the first tab which is search by nutrients -->
+            <div class="tabs-panel is-active" id="panel1c">
+                <h2>Seach Recipes By Ingredients</h2>
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-padding-x">
+                            <div class="medium-6 cell">
+                                <label>Search for a product
+                        <input type="text" placeholder="Enter an item to search" id="searchBar1">
+                        <a class="button primary" id="submitButton1">Submit</a>
+                      </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+
+
+            <!-- This is for the second tab which is Search by Nutrients -->
+            <div class="tabs-panel" id="panel2c">
+                <h2>Seach Recipes By Nutrients</h2>
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-padding-x">
+                            <div class="medium-6 cell">
+                                <label>Search for a product
+                        <input type="text" placeholder="Enter an item to search" id="searchBar2">
+                        <a class="button primary" id="submitButton2">Submit</a>
+                      </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+
+
+
+            <!-- This is the third tab which is search ramdomly -->
+            <div class="tabs-panel" id="panel3c">
+                <h2>Search Recipes Randomly</h2>
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-padding-x">
+                            <div class="medium-6 cell">
+                                <label>Search for a product
+                        <input type="text" placeholder="Enter an item to search" id="searchBar3">
+                        <a class="button primary" id="submitButton3">Submit</a>
+                      </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div id="attachHere3">
+
+
                 </div>
+
+
             </div>
         </div>
-    </form>
-
-    <div class="container foodResults" id="attachInfoHere">
-
-
-    </div>
 
 
 
-    <div class="container" id="attachHere">
+
+
+
+        <!-- <div class="container" id="attachHere">
         <div class="card" id="card1">
             <div class="card-divider">
                 This is a header
@@ -58,21 +117,18 @@
                 <p>It has an easy to override visual style, and is appropriately subdued.</p>
             </div>
         </div>
-    </div>
+    </div> -->
 
 
-
-
-
-
-
-
-
-
-    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
-    <script src="./assets/js/nav.js"></script>
-    <script src="./assets/js/recipe.js"></script>
-</body>
+        <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
+        <script>
+            $(document).ready(function() {
+                $(document).foundation()
+            })
+        </script>
+        <script src="./assets/js/nav.js"></script>
+        <script src="./assets/js/recipe.js"></script>
+    </body>
 
 </html>
