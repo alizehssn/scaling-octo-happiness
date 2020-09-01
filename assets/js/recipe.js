@@ -39,6 +39,18 @@ function searchByIngredients() {
         console.log(queryURL1);
         console.log(response1);
 
+        for (let i = 0; i < response1.length; i++) {
+            let responseItems = response1[i];
+            let mainDiv1 = $("<div>").addClass("card mainCard1");
+            let middleDiv1 = $("<div>").addClass("card-divider").html(responseItems.title);
+
+            let imageEl1 = $("<img>").addClass("pictures1").attr("src", responseItems.image).attr("data-name", responseItems.id);
+
+            mainDiv1.append(middleDiv1, imageEl1);
+
+            $("#attachHere1").append(mainDiv1);
+        }
+
     })
 
 
@@ -127,24 +139,24 @@ function searchRandomly() {
     console.log(queryURL3);
 
 
-    // $.ajax({
-    //     url: queryURL3,
-    //     method: "GET"
-    // }).then(function(response3) {
-    //     console.log(queryURL3);
-    //     console.log(response3);
+    $.ajax({
+        url: queryURL3,
+        method: "GET"
+    }).then(function(response3) {
+        console.log(queryURL3);
+        console.log(response3);
 
-    //     for (var x = 0; x < response3.recipes.length; x++) {
-    //         let recipe = response3.recipes[x];
-    //         let mainDiv3 = $("<div>").addClass("mainDiv3");
-    //         let title3 = $("<h3>").text(recipe.title);
-    //         let imageEl3 = $("<img>").attr("src", recipe.image).attr("style", "width: 300px");
-    //         let about3 = $("<div>").html(recipe.summary);
+        for (var x = 0; x < response3.recipes.length; x++) {
+            let recipe = response3.recipes[x];
+            let mainDiv3 = $("<div>").addClass("mainDiv3");
+            let title3 = $("<h3>").text(recipe.title);
+            let imageEl3 = $("<img>").attr("src", recipe.image).attr("style", "width: 300px");
+            let about3 = $("<div>").html(recipe.summary);
 
-    //         mainDiv3.append(title3, imageEl3, about3);
+            mainDiv3.append(title3, imageEl3, about3);
 
-    //         $("#attachHere3").append(mainDiv3);
-    //     }
+            $("#attachHere3").append(mainDiv3);
+        }
 
-    // })
+    })
 }

@@ -1,3 +1,7 @@
+#panel1c {
+    background-color: rgb(189, 189, 189);
+}
+
 .mainDiv3 {
     width: 80%;
     display: inline-block;
@@ -7,4 +11,13 @@
 
 .mainContainer {
     text-align: center;
+}
+
+.mainCard1 {
+    width: 30%;
+    display: inline-block;
+    margin-right: 2%;
+    text-align: center;
+    background-color: rgb(189, 189, 189);
+    border: 1 rem solid;
 }
