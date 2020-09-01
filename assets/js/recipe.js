@@ -40,60 +40,69 @@ function searchItem(itemToSearch2) {
 
 $("#submitButton3").on("click", function(event) {
     event.preventDefault();
-    // let checkbox1 = $("#checkbox1").val();
-    // console.log(checkbox1);
-
-
-
-
-
-
     searchItem();
 })
 
 function searchItem() {
-
+    $("#attachHere3").empty();
     let queryURL3 = "https://api.spoonacular.com/recipes/random?&number=5&apiKey=0ba7a0fdd45c497a8afd81dae904a16c";
     let params = [];
-    $("#dietFilters").find("input").each(function() {
-            if ($(this).prop("checked") === true) {
-                params.push($(this).val())
-            }
-            // console.log($(this).val());
-        })
-        // console.log(params.join(","));
-    queryURL3 += "&tags=" + params.join(",");
+    let params2 = [];
+    let params3 = [];
+    $("#dietFilters").children("input").each(function() {
+        if ($(this).prop("checked") === true) {
+            params.push($(this).val());
+        }
+    })
+
+    if (params.length >= 1) {
+        queryURL3 += "&tags=" + params.join(",");
+    }
+
+
+    $("#mealFilters").children("input").each(function() {
+        if ($(this).prop("checked") === true) {
+            params2.push($(this).val());
+        }
+    })
+
+    if (params2.length >= 1) {
+        queryURL3 += "&type=" + params2.join(",");
+    }
+
+
+    $("#intoleranceFilters").children("input").each(function() {
+        if ($(this).prop("checked") === true) {
+            params3.push($(this).val());
+        }
+    })
+
+    if (params3.length >= 1) {
+        queryURL3 += "&intolerances=" + params3.join(",");
+    }
+
+
     console.log(queryURL3);
 
 
-    $.ajax({
-        url: queryURL3,
-        method: "GET"
-    }).then(function(response3) {
-        console.log(queryURL3);
-        console.log(response3);
+    // $.ajax({
+    //     url: queryURL3,
+    //     method: "GET"
+    // }).then(function(response3) {
+    //     console.log(queryURL3);
+    //     console.log(response3);
 
-        for (var x = 0; x < response3.recipes.length; x++) {
-            let recipe = response3.recipes[x];
-            let mainDiv3 = $("<div>").addClass("mainDiv3");
-            let title3 = $("<h3>").text(recipe.title);
-            let imageEl3 = $("<img>").attr("src", recipe.image).attr("style", "width: 300px");
-            let about3 = $("<div>").html(recipe.summary);
+    //     for (var x = 0; x < response3.recipes.length; x++) {
+    //         let recipe = response3.recipes[x];
+    //         let mainDiv3 = $("<div>").addClass("mainDiv3");
+    //         let title3 = $("<h3>").text(recipe.title);
+    //         let imageEl3 = $("<img>").attr("src", recipe.image).attr("style", "width: 300px");
+    //         let about3 = $("<div>").html(recipe.summary);
 
+    //         mainDiv3.append(title3, imageEl3, about3);
 
-            mainDiv3.append(title3, imageEl3, about3);
+    //         $("#attachHere3").append(mainDiv3);
+    //     }
 
-
-            $("#attachHere3").append(mainDiv3);
-
-
-
-        }
-
-
-
-
-
-
-    })
+    // })
 }
