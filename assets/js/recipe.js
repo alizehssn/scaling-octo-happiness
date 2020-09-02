@@ -19,20 +19,22 @@ $("#submitButton1").on("click", function(event) {
 
 function searchByIngredients() {
     $("#attachHere1").empty();
-    console.log("his");
-    let queryURL1 = "https://api.spoonacular.com/recipes/findByIngredients?&number=5" + apiKey;
+
+    let queryURL1 = "https://api.spoonacular.com/recipes/findByIngredients?" + apiKey;
     let ingredientParam = [];
+    let numberOfRecipes1 = $("#selectRecipes1").val();
+
 
     let search1Value = $("#searchBar1").val().trim().toLowerCase().toString();
     ingredientParam = search1Value.split(" ");
     console.log(ingredientParam.length);
 
-    if (ingredientParam.length >= 2) {
+    if (ingredientParam.length >= 1) {
         queryURL1 += "&ingredients=" + ingredientParam.join(",+");
     }
-
-    console.log(queryURL1);
-
+    if (numberOfRecipes1) {
+        queryURL1 += "&number=" + numberOfRecipes1;
+    }
 
     $.ajax({
         url: queryURL1,
@@ -69,7 +71,7 @@ $("#submitButton2").on("click", function(event) {
 })
 
 function searchByNutrients() {
-    let queryURL2 = "https://api.spoonacular.com/recipes/findByNutrients?&number=5" + apiKey;
+    let queryURL2 = "https://api.spoonacular.com/recipes/findByNutrients?" + apiKey;
 
     let carbsMin = $("#carbsMin").val().toString();
     let carbsMax = $("#carbsMax").val().toString();
@@ -99,6 +101,8 @@ function searchByNutrients() {
     let vitamincMax = $("#vitamincMax").val().toString();
     let zincMin = $("#zincMin").val().toString();
     let zincMax = $("#zincMax").val().toString();
+    let numberOfRecipes2 = $("#selectRecipes2").val();
+
 
 
 
@@ -186,6 +190,12 @@ function searchByNutrients() {
     if (zincMax != undefined && zincMax != "") {
         queryURL2 += "&maxZinc=" + zincMax;
     }
+    if (numberOfRecipes2) {
+        queryURL2 += "&number=" + numberOfRecipes2;
+    }
+    console.log(queryURL2);
+
+
 
 
     $.ajax({
@@ -217,10 +227,12 @@ $("#submitButton3").on("click", function(event) {
 
 function searchRandomly() {
     $("#attachHere3").empty();
-    let queryURL3 = "https://api.spoonacular.com/recipes/random?&number=5" + apiKey;
+    let queryURL3 = "https://api.spoonacular.com/recipes/random?" + apiKey;
     let params = [];
     let params2 = [];
     let params3 = [];
+    let numberOfRecipes3 = $("#selectRecipes3").val()
+    console.log(numberOfRecipes3);
     $("#dietFilters").children("input").each(function() {
         if ($(this).prop("checked") === true) {
             params.push($(this).val());
@@ -248,7 +260,11 @@ function searchRandomly() {
     if (params3.length >= 1) {
         queryURL3 += "&tags=" + params3.join(",");
     }
-    // console.log(queryURL3);
+    if (numberOfRecipes3) {
+        queryURL3 += "&number=" + numberOfRecipes3;
+    }
+
+    console.log(queryURL3);
     $.ajax({
         url: queryURL3,
         method: "GET"
@@ -267,8 +283,8 @@ function searchRandomly() {
             for (var y = 0; y < recipe.extendedIngredients.length; y++) {
                 let smallDivPicture = $("<div>").addClass("smallImages");
                 let ingredientsImg3 = $("<p>").text(recipe.extendedIngredients[y].amount + recipe.extendedIngredients[y].unit).add($("<img>").attr("src", "https://spoonacular.com/cdn/ingredients_100x100/" + recipe.extendedIngredients[y].image));
-
-                recipeDivEl3.append(smallDivPicture, ingredientsImg3);
+                smallDivPicture.html(ingredientsImg3);
+                recipeDivEl3.append(smallDivPicture);
             }
 
             mainDiv3.append(title3, imageEl3, about3, recipeDivEl3);
