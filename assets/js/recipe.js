@@ -61,20 +61,18 @@ function searchByIngredients() {
 //
 //SECOND SEARCH BAR which is BY NUTRIENTS
 //
-$("#submitButton").on("click", function(event) {
+$("#submitButton2").on("click", function(event) {
     event.preventDefault();
 
-    let itemToSearch2 = $("#searchBar").val();
+    console.log("yay")
 
 
-    searchItem(itemToSearch2);
+    searchItem();
 })
 
-function searchItem(itemToSearch2) {
-    console.log(itemToSearch2);
+function searchItem() {
 
-    let queryURL = "https://api.spoonacular.com/recipes/complexSearch?query=" + itemToSearch2 + "&apiKey=0ba7a0fdd45c497a8afd81dae904a16c";
-
+    let queryURL2 = "https://api.spoonacular.com/recipes/findByNutrients"
 
 
     $.ajax({
