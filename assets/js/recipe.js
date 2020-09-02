@@ -1,6 +1,6 @@
 // Spoonacular working login info
 //let queryURL = "https://api.spoonacular.com/food/products/search?query=" + itemToSearch + "&apiKey=0ba7a0fdd45c497a8afd81dae904a16c";
-//
+//backup api    1db9120bf8854065b69f6e8dba48a42e;
 ///FIRST SEARCH   by ingredient
 //
 
@@ -17,6 +17,7 @@ $("#submitButton1").on("click", function(event) {
 });
 
 function searchByIngredients() {
+    $("#attachHere1").empty();
     console.log("his");
     let queryURL1 = "https://api.spoonacular.com/recipes/findByIngredients?&number=5&apiKey=0ba7a0fdd45c497a8afd81dae904a16c";
     let ingredientParam = [];
@@ -72,7 +73,7 @@ $("#submitButton2").on("click", function(event) {
 
 function searchItem() {
 
-    let queryURL2 = "https://api.spoonacular.com/recipes/findByNutrients"
+    let queryURL2 = "https://api.spoonacular.com/recipes/findByNutrients?&number=5&apiKey=0ba7a0fdd45c497a8afd81dae904a16c";
 
 
     $.ajax({
@@ -107,21 +108,18 @@ function searchRandomly() {
             params.push($(this).val());
         }
     })
-
     if (params.length >= 1) {
         queryURL3 += "&tags=" + params.join(",");
     }
 
-
-    $("#mealFilters").children("input").each(function() {
-        if ($(this).prop("checked") === true) {
-            params2.push($(this).val());
-        }
-    })
-
-    if (params2.length >= 1) {
-        queryURL3 += "&type=" + params2.join(",");
-    }
+    // $("#mealFilters").children("input").each(function() {
+    //     if ($(this).prop("checked") === true) {
+    //         params2.push($(this).val());
+    //     }
+    // })
+    // if (params2.length >= 1) {
+    //     queryURL3 += "&tags=" + params2.join(",");
+    // }
 
     $("#intoleranceFilters").children("input").each(function() {
         if ($(this).prop("checked") === true) {
@@ -130,13 +128,9 @@ function searchRandomly() {
     })
 
     if (params3.length >= 1) {
-        queryURL3 += "&intolerances=" + params3.join(",");
+        queryURL3 += "&tags=" + params3.join(",");
     }
-
-
-    console.log(queryURL3);
-
-
+    // console.log(queryURL3);
     $.ajax({
         url: queryURL3,
         method: "GET"
@@ -148,10 +142,18 @@ function searchRandomly() {
             let recipe = response3.recipes[x];
             let mainDiv3 = $("<div>").addClass("mainDiv3");
             let title3 = $("<h3>").text(recipe.title);
-            let imageEl3 = $("<img>").attr("src", recipe.image).attr("style", "width: 300px");
+            let imageEl3 = $("<img>").attr("src", recipe.image).attr("style", "width: 300px").attr("data-name", recipe.id);
             let about3 = $("<div>").html(recipe.summary);
+            let recipeDivEl3 = $("<div>").html("Ingredients: ");
 
-            mainDiv3.append(title3, imageEl3, about3);
+            for (var y = 0; y < recipe.extendedIngredients.length; y++) {
+                let smallDivPicture = $("<div>").addClass("smallImages");
+                let ingredientsImg3 = $("<p>").text(recipe.extendedIngredients[y].amount + recipe.extendedIngredients[y].unit).add($("<img>").attr("src", "https://spoonacular.com/cdn/ingredients_100x100/" + recipe.extendedIngredients[y].image));
+
+                recipeDivEl3.append(smallDivPicture, ingredientsImg3);
+            }
+
+            mainDiv3.append(title3, imageEl3, about3, recipeDivEl3);
 
             $("#attachHere3").append(mainDiv3);
         }
