@@ -60,6 +60,302 @@
         <!-- This is for the second tab which is Search by Nutrients -->
         <div class="tabs-panel" id="panel2c">
             <h2>Seach Recipes By Nutrients</h2>
+            <!-- Dropdown searches start here -->
+            <button class="button" type="button" data-toggle="carbs">Carbohydrates </button>
+            <div class="dropdown-pane" id="carbs" data-dropdown data-auto-focus="true">
+                Minimum or Maximum in grams
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell medium-6">
+                                <label>Min.
+                        <input id="carbsMin" type="number" placeholder="Ex. 10">
+                      </label>
+                            </div>
+                            <div class="cell medium-6">
+                                <label>Max
+                        <input id="carbsMax" type="number" placeholder="Ex. 100">
+                      </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Next dropdown -->
+            <button class="button" type="button" data-toggle="protein">Protein </button>
+            <div class="dropdown-pane" id="protein" data-dropdown data-auto-focus="true">
+                Minimum or Maximum in grams
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell medium-6">
+                                <label>Min.
+                        <input id="proteinMin" type="number" placeholder="Ex. 10">
+                      </label>
+                            </div>
+                            <div class="cell medium-6">
+                                <label>Max
+                        <input id="proteinMax" type="number" placeholder="Ex. 100">
+                      </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Next dropdown -->
+            <button class="button" type="button" data-toggle="calories">Calories </button>
+            <div class="dropdown-pane" id="calories" data-dropdown data-auto-focus="true">
+                Minimum or Maximum Calories
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell medium-6">
+                                <label>Min.
+                         <input id="caloriesMin" type="number" placeholder="Ex. 50">
+                       </label>
+                            </div>
+                            <div class="cell medium-6">
+                                <label>Max
+                         <input id="caloriesMax" type="number" placeholder="Ex. 800">
+                       </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Next dropdown -->
+            <button class="button" type="button" data-toggle="fat">Fat </button>
+            <div class="dropdown-pane" id="fat" data-dropdown data-auto-focus="true">
+                Minimum or Maximum in grams
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell medium-6">
+                                <label>Min.
+                         <input id="fatMin" type="number" placeholder="Ex. 10">
+                       </label>
+                            </div>
+                            <div class="cell medium-6">
+                                <label>Max
+                         <input id="fatMax" type="number" placeholder="Ex. 100">
+                       </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Next dropdown -->
+            <button class="button" type="button" data-toggle="satfat">Saturated Fat</button>
+            <div class="dropdown-pane" id="satfat" data-dropdown data-auto-focus="true">
+                Minimum or Maximum in grams
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell medium-6">
+                                <label>Min.
+                        <input id="satfatMin" type="number" placeholder="Ex. 10">
+                      </label>
+                            </div>
+                            <div class="cell medium-6">
+                                <label>Max
+                        <input id="satfatMax" type="number" placeholder="Ex. 100">
+                      </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Next dropdown -->
+            <button class="button" type="button" data-toggle="Cholesterol">Cholesterol</button>
+            <div class="dropdown-pane" id="Cholesterol" data-dropdown data-auto-focus="true">
+                Minimum or Maximum in milligrams
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell medium-6">
+                                <label>Min.
+                        <input id="cholesterolMin" type="number" placeholder="Ex. 10">
+                      </label>
+                            </div>
+                            <div class="cell medium-6">
+                                <label>Max
+                        <input id="cholesterolMax" type="number" placeholder="Ex. 100">
+                      </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Next dropdown -->
+            <button class="button" type="button" data-toggle="calcium">Calcium</button>
+            <div class="dropdown-pane" id="calcium" data-dropdown data-auto-focus="true">
+                Minimum or Maximum in milligrams
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell medium-6">
+                                <label>Min.
+                          <input id="calciumMin" type="number" placeholder="Ex. 10">
+                        </label>
+                            </div>
+                            <div class="cell medium-6">
+                                <label>Max
+                          <input id="calciumMax" type="number" placeholder="Ex. 100">
+                        </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Next dropdown -->
+            <button class="button" type="button" data-toggle="fiber">Fiber</button>
+            <div class="dropdown-pane" id="fiber" data-dropdown data-auto-focus="true">
+                Minimum or Maximum in grams
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell medium-6">
+                                <label>Min.
+                        <input id="fiberMin" type="number" placeholder="Ex. 10">
+                      </label>
+                            </div>
+                            <div class="cell medium-6">
+                                <label>Max
+                        <input id="fiberMax" type="number" placeholder="Ex. 100">
+                      </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Next dropdown -->
+            <button class="button" type="button" data-toggle="iron">Iron</button>
+            <div class="dropdown-pane" id="iron" data-dropdown data-auto-focus="true">
+                Minimum or Maximum in milligrams
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell medium-6">
+                                <label>Min.
+                          <input id="ironMin" type="number" placeholder="Ex. 10">
+                        </label>
+                            </div>
+                            <div class="cell medium-6">
+                                <label>Max
+                          <input id="ironMax" type="number" placeholder="Ex. 100">
+                        </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Next dropdown -->
+            <button class="button" type="button" data-toggle="potassium">Potassium</button>
+            <div class="dropdown-pane" id="potassium" data-dropdown data-auto-focus="true">
+                Minimum or Maximum in milligrams
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell medium-6">
+                                <label>Min.
+                        <input id="potassiumMin" type="number" placeholder="Ex. 10">
+                      </label>
+                            </div>
+                            <div class="cell medium-6">
+                                <label>Max
+                        <input id="potassiumMax" type="number" placeholder="Ex. 100">
+                      </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Next dropdown -->
+            <button class="button" type="button" data-toggle="sodium">Sodium</button>
+            <div class="dropdown-pane" id="sodium" data-dropdown data-auto-focus="true">
+                Minimum or Maximum in milligrams
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell medium-6">
+                                <label>Min.
+                          <input id="sodiumMin" type="number" placeholder="Ex. 10">
+                        </label>
+                            </div>
+                            <div class="cell medium-6">
+                                <label>Max
+                          <input id="sodiumMax" type="number" placeholder="Ex. 100">
+                        </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Next dropdown -->
+            <button class="button" type="button" data-toggle="sugar">Sugar</button>
+            <div class="dropdown-pane" id="sugar" data-dropdown data-auto-focus="true">
+                Minimum or Maximum in milligrams
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell medium-6">
+                                <label>Min.
+                        <input id="sugarMin" type="number" placeholder="Ex. 10">
+                      </label>
+                            </div>
+                            <div class="cell medium-6">
+                                <label>Max
+                        <input id="sugarMax" type="number" placeholder="Ex. 100">
+                      </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Next dropdown -->
+            <button class="button" type="button" data-toggle="vitaminc">Vitamin C</button>
+            <div class="dropdown-pane" id="vitaminc" data-dropdown data-auto-focus="true">
+                Minimum or Maximum in milligrams
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell medium-6">
+                                <label>Min.
+                          <input id="vitamincMin" type="number" placeholder="Ex. 10">
+                        </label>
+                            </div>
+                            <div class="cell medium-6">
+                                <label>Max
+                          <input id="vitamincMax" type="number" placeholder="Ex. 100">
+                        </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Next dropdown -->
+            <button class="button" type="button" data-toggle="zinc">Zinc</button>
+            <div class="dropdown-pane" id="zinc" data-dropdown data-auto-focus="true">
+                Minimum or Maximum in milligrams
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell medium-6">
+                                <label>Min.
+                        <input id="zincMin" type="number" placeholder="Ex. 10">
+                      </label>
+                            </div>
+                            <div class="cell medium-6">
+                                <label>Max
+                        <input id="zincMax" type="number" placeholder="Ex. 100">
+                      </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+
             <form>
                 <div class="grid-container">
                     <div class="grid-x grid-padding-x">

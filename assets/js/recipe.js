@@ -3,6 +3,7 @@
 //backup api    1db9120bf8854065b69f6e8dba48a42e;
 ///FIRST SEARCH   by ingredient
 //
+var apiKey = "&apiKey=0ba7a0fdd45c497a8afd81dae904a16c"
 
 $("#submitButton1").on("click", function(event) {
     event.preventDefault();
@@ -19,7 +20,7 @@ $("#submitButton1").on("click", function(event) {
 function searchByIngredients() {
     $("#attachHere1").empty();
     console.log("his");
-    let queryURL1 = "https://api.spoonacular.com/recipes/findByIngredients?&number=5&apiKey=0ba7a0fdd45c497a8afd81dae904a16c";
+    let queryURL1 = "https://api.spoonacular.com/recipes/findByIngredients?&number=5" + apiKey;
     let ingredientParam = [];
 
     let search1Value = $("#searchBar1").val().trim().toLowerCase().toString();
@@ -64,29 +65,32 @@ function searchByIngredients() {
 //
 $("#submitButton2").on("click", function(event) {
     event.preventDefault();
-
-    console.log("yay")
-
-
-    searchItem();
+    searchByNutrients();
 })
 
-function searchItem() {
+function searchByNutrients() {
 
-    let queryURL2 = "https://api.spoonacular.com/recipes/findByNutrients?&number=5&apiKey=0ba7a0fdd45c497a8afd81dae904a16c";
+    let queryURL2 = "https://api.spoonacular.com/recipes/findByNutrients?&number=5" + apiKey + "&maxCarbs=50";
 
+    console.log(queryURL2)
 
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function(response) {
-        console.log(queryURL);
-        console.log(response);
-
+    // $.ajax({
+    //     url: queryURL2,
+    //     method: "GET"
+    // }).then(function(response2) {
 
 
-    })
+    //     console.log(queryURL2);
+    //     console.log(response2);
+
+
+
+    // })
 }
+
+
+
+
 //
 //THIRD SEARCH BAR WHICH IS RANDOMLY
 //#3
@@ -99,7 +103,7 @@ $("#submitButton3").on("click", function(event) {
 
 function searchRandomly() {
     $("#attachHere3").empty();
-    let queryURL3 = "https://api.spoonacular.com/recipes/random?&number=5&apiKey=0ba7a0fdd45c497a8afd81dae904a16c";
+    let queryURL3 = "https://api.spoonacular.com/recipes/random?&number=5" + apiKey;
     let params = [];
     let params2 = [];
     let params3 = [];

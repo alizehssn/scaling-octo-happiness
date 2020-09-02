@@ -25,3 +25,9 @@
 .smallImages {
     display: inline-block;
 }
+
+.button {
+    margin: 10px;
+    width: 150px;
+    padding: 30px;
+}
