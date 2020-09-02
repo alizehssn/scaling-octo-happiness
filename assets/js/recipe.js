@@ -69,23 +69,137 @@ $("#submitButton2").on("click", function(event) {
 })
 
 function searchByNutrients() {
+    let queryURL2 = "https://api.spoonacular.com/recipes/findByNutrients?&number=5" + apiKey;
 
-    let queryURL2 = "https://api.spoonacular.com/recipes/findByNutrients?&number=5" + apiKey + "&maxCarbs=50";
+    let carbsMin = $("#carbsMin").val().toString();
+    let carbsMax = $("#carbsMax").val().toString();
+    let proteinMin = $("#proteinMin").val().toString();
+    let proteinMax = $("#proteinMax").val().toString();
+    let caloriesMin = $("#caloriesMin").val().toString();
+    let caloriesMax = $("#caloriesMax").val().toString();
+    let fatMin = $("#fatMin").val().toString();
+    let fatMax = $("#fatMax").val().toString();
+    let satfatMin = $("#satfatMin").val().toString();
+    let satfatMax = $("#satfatMax").val().toString();
+    let cholesterolMin = $("#cholesterolMin").val().toString();
+    let cholesterolMax = $("#cholesterolMax").val().toString();
+    let calciumMin = $("#calciumMin").val().toString();
+    let calciumMax = $("#calciumMax").val().toString();
+    let fiberMin = $("#fiberMin").val().toString();
+    let fiberMax = $("#fiberMax").val().toString();
+    let ironMin = $("#ironMin").val().toString();
+    let ironMax = $("#ironMax").val().toString();
+    let potassiumMin = $("#potassiumMin").val().toString();
+    let potassiumMax = $("#potassiumMax").val().toString();
+    let sodiumMin = $("#sodiumMin").val().toString();
+    let sodiumMax = $("#sodiumMax").val().toString();
+    let sugarMin = $("#sugarMin").val().toString();
+    let sugarMax = $("#sugarMax").val().toString();
+    let vitamincMin = $("#vitamincMin").val().toString();
+    let vitamincMax = $("#vitamincMax").val().toString();
+    let zincMin = $("#zincMin").val().toString();
+    let zincMax = $("#zincMax").val().toString();
 
-    console.log(queryURL2)
-
-    // $.ajax({
-    //     url: queryURL2,
-    //     method: "GET"
-    // }).then(function(response2) {
 
 
-    //     console.log(queryURL2);
-    //     console.log(response2);
+    if (carbsMin != undefined && carbsMin != "") {
+        queryURL2 += "&minCarbs=" + carbsMin;
+    }
+    if (carbsMax != undefined && carbsMax != "") {
+        queryURL2 += "&maxCarbs=" + carbsMax;
+    }
+    if (proteinMin != undefined && proteinMin != "") {
+        queryURL2 += "&minProtein=" + proteinMin;
+    }
+    if (proteinMax != undefined && proteinMax != "") {
+        queryURL2 += "&maxProtein=" + proteinMax;
+    }
+    if (caloriesMin != undefined && caloriesMin != "") {
+        queryURL2 += "&minCalories=" + caloriesMin;
+    }
+    if (caloriesMax != undefined && caloriesMax != "") {
+        queryURL2 += "&maxCalories=" + caloriesMax;
+    }
+    if (fatMin != undefined && fatMin != "") {
+        queryURL2 += "&minFat=" + fatMin;
+    }
+    if (fatMax != undefined && fatMax != "") {
+        queryURL2 += "&maxFat=" + fatMax;
+    }
+    if (satfatMin != undefined && satfatMin != "") {
+        queryURL2 += "&minSaturatedFat=" + satfatMin;
+    }
+    if (satfatMax != undefined && satfatMax != "") {
+        queryURL2 += "&maxSaturatedFat=" + satfatMax;
+    }
+    if (cholesterolMin != undefined && cholesterolMin != "") {
+        queryURL2 += "&minCholesterol=" + cholesterolMin;
+    }
+    if (cholesterolMax != undefined && cholesterolMax != "") {
+        queryURL2 += "&maxCholesterol=" + cholesterolMax;
+    }
+    if (calciumMin != undefined && calciumMin != "") {
+        queryURL2 += "&minCalcium=" + calciumMin;
+    }
+    if (calciumMax != undefined && calciumMax != "") {
+        queryURL2 += "&maxCalcium=" + calciumMax;
+    }
+    if (fiberMin != undefined && fiberMin != "") {
+        queryURL2 += "&minFiber=" + fiberMin;
+    }
+    if (fiberMax != undefined && fiberMax != "") {
+        queryURL2 += "&maxFiber=" + fiberMax;
+    }
+    if (ironMin != undefined && ironMin != "") {
+        queryURL2 += "&minIron=" + ironMin;
+    }
+    if (ironMax != undefined && ironMax != "") {
+        queryURL2 += "&maxIron=" + ironMax;
+    }
+    if (potassiumMin != undefined && potassiumMin != "") {
+        queryURL2 += "&minPotassium=" + potassiumMin;
+    }
+    if (potassiumMax != undefined && potassiumMax != "") {
+        queryURL2 += "&maxPotassium=" + potassiumMax;
+    }
+    if (sodiumMin != undefined && sodiumMin != "") {
+        queryURL2 += "&minSodium=" + sodiumMin;
+    }
+    if (sodiumMax != undefined && sodiumMax != "") {
+        queryURL2 += "&maxSodium=" + sodiumMax;
+    }
+    if (sugarMin != undefined && sugarMin != "") {
+        queryURL2 += "&minSugar=" + sugarMin;
+    }
+    if (sugarMax != undefined && sugarMax != "") {
+        queryURL2 += "&maxSugar=" + sugarMax;
+    }
+    if (vitamincMin != undefined && vitamincMin != "") {
+        queryURL2 += "&minVitaminC=" + vitamincMin;
+    }
+    if (vitamincMax != undefined && vitamincMax != "") {
+        queryURL2 += "&maxVitaminC=" + vitamincMax;
+    }
+    if (zincMin != undefined && zincMin != "") {
+        queryURL2 += "&minZinc=" + zincMin;
+    }
+    if (zincMax != undefined && zincMax != "") {
+        queryURL2 += "&maxZinc=" + zincMax;
+    }
+
+
+    $.ajax({
+        url: queryURL2,
+        method: "GET"
+    }).then(function(response2) {
+
+
+        console.log(queryURL2);
+        console.log(response2);
 
 
 
-    // })
+    })
 }
 
 
