@@ -57,6 +57,7 @@ function searchMakeup() {
         console.log(baseUrl)
     }
 
+    // let resultsLength = $("#selectResultsQ").val();
 
     //AJAX Call
 
@@ -65,21 +66,26 @@ function searchMakeup() {
         method: "GET"
     }).then(function(response) {
         console.log(response)
+        $("#resultsContainer").empty();
         if (response.length === 0) {
             let divEl = $("<div>").text("No Results :(");
             $("#resultsContainer").append(divEl)
         }
-        for (var x = 0; x < response.length; x++) {
+        for (var i = 0; i < response.length; i++) {
+            let brand = $("<h1>").text(response[i].brand);
+            let img = $("<img>").attr("src", response[i].image_link).attr("style", "width: 300px");
+            let prod = $("<h2>").text(response[i].product_type);
+            let cat = $("<p>").text(response[i].category);
+            let link = $("<p>").text(response[i].product_link);
+            let matchedTags = $("<p>").text(response[i].tag_list);
 
+
+            $("#resultsContainer").append(brand, img, prod, cat, link, matchedTags)
         }
 
 
 
     })
-
-
-
-
 
 
 
