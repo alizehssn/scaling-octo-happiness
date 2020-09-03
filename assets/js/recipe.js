@@ -206,6 +206,16 @@ function searchByNutrients() {
         console.log(queryURL2);
         console.log(response2);
 
+        for (var v = 0; v < response2.length; v++) {
+            let result2 = response2[v];
+            let mainDivEl2 = $("<div>").addClass("mainDiv2");
+            let titleEl = $("<p>").text(result2.title);
+            let imageEl2 = $("<img>").attr("data-name", result2.id).attr("src", result2.image).attr("style", "width: 300px");
+            let pEl2 = $("<p>").html("Calories :" + result2.calories + " Carbs: ")
+
+        }
+
+
 
 
     })

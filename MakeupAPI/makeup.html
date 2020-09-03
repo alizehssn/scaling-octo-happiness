@@ -1,0 +1,121 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Foundation Starter Template</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous"></link>
+    <link rel="stylesheet" href="style.css"></link>
+    <link rel="stylesheet" href="../nav.css">
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">
+            <h4>The Nav</h4>
+        </div>
+        <ul class="navLinks">
+            <li class="li1"><a href="#">Food</a></li>
+            <li class="li1"><a href="#">Makeup</a></li>
+            <li class="li1"><a href="#">Beer</a></li>
+        </ul>
+    </nav>
+
+    <form>
+        <fieldset class="fieldset" id="makeupFilters">
+            <legend>Investigate For</legend>
+            <input id="checkbox1" type="checkbox" name="criteria" value="Vegan"><label for="checkbox1">Vegan</label>
+            <input id="checkbox2" type="checkbox" name="criteria" value="Gluten-Free"><label for="checkbox2">Gluten-Free</label>
+            <input id="checkbox3" type="checkbox" name="criteria" value="Hypoallergenic"><label for="checkbox3">Hypoallergenic</label>
+            <input id="checkbox4" type="checkbox" name="criteria" value="Cruelty-Free"><label for="checkbox4">Cruelty-Free</label>
+            <input id="checkbox5" type="checkbox" name="criteria" value="Organic"><label for="checkbox5">Organic</label>
+            <input id="checkbox6" type="checkbox" name="criteria" value="Fair-Trade"><label for="checkbox6">Fair Trade</label>
+        </fieldset>
+
+
+        <div class="grid-container">
+            <div class="grid-x grid-margin-x">
+                <div class="cell medium-6">
+                    <label> What Product Are You Looking For Today?
+                        <select id="productType">
+                            <option value="blush">Blush</option>
+                            <option value="bronzer">Bronzer</option>
+                            <option value="eyebrow">Eyebrow</option>
+                            <option value="eyeliner">Eyeliner</option>
+                            <option value="eyeshadow">Eyeshadow</option>
+                            <option value="foundation">Foundation</option>
+                            <option value="lipstick">Lipstick</option>
+                            <option value="mascara">Mascara</option>
+                            <option value="nailPolish">Nail Polish</option>
+                            <option value="">N/A</option>   
+                        </select>
+                </div>
+                <div class="cell medium-6">
+                    <label>Do You Have a Brand In Mind?
+                        <select id="productBrand">
+                            <option value=0>Any Brand Is Fine!</option>
+                            <option value="almay">almay</option>
+                            <option value="alva">alva</option>
+                            <option value="anna-sui">anna sui</option>
+                            <option value="annabelle">annabelle</option>
+                            <option value="benefit">benefit</option>
+                            <option value="boosh">Boosh</option>
+                            <option value="burtsBees">Burt's Bees</option>
+                            <option value="butterLondon">Butter London</option>
+                            <option value="nailPolish">Nail Polish</option>
+                            <option value="cestmoi">C'est Moi</option>
+                            <option value="clinique">Clinique</option>
+                            <option value="colourpop">Colourpop</option>
+                            <option value="covergirl">Covergirl</option>
+                            <option value="dior">Dior</option>
+                            <option value="elf">E.L.F</option>
+                            <option value="essie">Essie</option>
+                            <option value="fenty">Fenty</option>
+                            <option value="glossier">Glossier</option>
+                            <option value="loreal">L'oreal</option>
+                            <option value="maybelline">Maybelline</option>
+                            <option value="milani">Milani</option>
+                            <option value="nyx">Nyx</option>
+                            <option value="orly">Orly</option>
+                            <option value="physiciansFormula">Physicians Formula</option>
+                            <option value="stila">Stila</option>
+                            <option value="revlon">Revlon</option>
+                            <option value="wetnwild">Wet n Wild</option>
+                        </select>
+                      </label>
+                </div>
+                <label>How Many Results Would You Like to See?
+                    <select id="selectResultQ">
+                        <option value="5">5</option>
+                        <option selected value="10">10</option>
+                        <option value="15">15</option>
+                      </select>
+                    </label>
+                <button type="button" id="searchBy">Search</button>
+            </div>
+        </div>
+
+    </form>
+    <!--Container for Results(Carousel)-->
+    <div id="resultsContainer"></div>
+
+
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    <script src="../moment.min.js"></script>
+    <script src="../nav.js"></script>
+    <script>
+        $(document).ready(function() {
+            $(document).foundation()
+        })
+    </script>
+</body>
+
+</html>
