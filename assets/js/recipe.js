@@ -71,6 +71,7 @@ $("#submitButton2").on("click", function(event) {
 })
 
 function searchByNutrients() {
+    $("#attachHere2").empty();
     let queryURL2 = "https://api.spoonacular.com/recipes/findByNutrients?" + apiKey;
 
     let carbsMin = $("#carbsMin").val().toString();
@@ -202,8 +203,6 @@ function searchByNutrients() {
         url: queryURL2,
         method: "GET"
     }).then(function(response2) {
-
-
         console.log(queryURL2);
         console.log(response2);
 
@@ -271,6 +270,7 @@ function searchRandomly() {
     }).then(function(response3) {
         console.log(queryURL3);
         console.log(response3);
+
 
         for (var x = 0; x < response3.recipes.length; x++) {
             let recipe = response3.recipes[x];
