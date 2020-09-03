@@ -1,0 +1,72 @@
+#card1 {
+    width: 30%;
+    margin-left: 10px;
+}
+
+.pictures {
+    margin: 10px;
+}
+
+.divItem {
+    display: inline-block;
+    width: 20%;
+    margin: 1%;
+}
+
+.call2Main {
+    text-align: center;
+    display: inline-block;
+    width: 80%;
+    margin-left: 30%;
+}
+
+.call2Heading {
+    text-align: center;
+}
+
+.badges {
+    text-align: center;
+    display: inline-block;
+    width: 90%;
+    margin-left: 5%;
+}
+
+.call2Ingredients {
+    text-align: center;
+    display: inline-block;
+    width: 90%;
+    margin: 0 auto;
+    margin-left: 5%;
+}
+
+.button {
+    border-radius: 10px;
+}
+
+.search-bar {
+    padding: 10px;
+    margin: 10px;
+}
+
+#searchBar {
+    border-radius: 10px;
+}
+
+.divItem:hover .picture {
+    opacity: 0.3;
+  }
+
+.picture {
+opacity: 1;
+display: block;
+width: 100%;
+height: auto;
+transition: .5s ease;
+backface-visibility: hidden;
+}
+
+.foodResults {
+    float: center;
+    padding: 20px;
+    word-wrap: normal;
+}
