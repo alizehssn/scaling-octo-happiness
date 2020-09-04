@@ -3,7 +3,10 @@
 //backup api    1db9120bf8854065b69f6e8dba48a42e;
 ///FIRST SEARCH   by ingredient
 //
-var apiKey = "&apiKey=0ba7a0fdd45c497a8afd81dae904a16c"
+var apiKey = "&apiKey=0ba7a0fdd45c497a8afd81dae904a16c";
+var recipeArray = [];
+var foodObjectItem = {};
+renderRecipes();
 
 $("#submitButton1").on("click", function(event) {
     event.preventDefault();
@@ -47,10 +50,9 @@ function searchByIngredients() {
             let responseItems = response1[i];
             let mainDiv1 = $("<div>").addClass("card mainCard1");
             let middleDiv1 = $("<div>").addClass("card-divider").html(responseItems.title);
-
             let imageEl1 = $("<img>").addClass("pictures1").attr("src", responseItems.image).attr("data-name", responseItems.id);
-
-            mainDiv1.append(middleDiv1, imageEl1);
+            let buttonEl = $("<button>").addClass("saveButton").attr("data-value", responseItems.id).text("save").attr("data-name", responseItems.title).attr("data-src", responseItems.image);
+            mainDiv1.append(middleDiv1, buttonEl, imageEl1);
 
             $("#attachHere1").append(mainDiv1);
         }
@@ -209,10 +211,13 @@ function searchByNutrients() {
         for (var v = 0; v < response2.length; v++) {
             let result2 = response2[v];
             let mainDivEl2 = $("<div>").addClass("mainDiv2");
-            let titleEl = $("<p>").text(result2.title);
-            let imageEl2 = $("<img>").attr("data-name", result2.id).attr("src", result2.image).attr("style", "width: 300px");
-            let pEl2 = $("<p>").html("Calories :" + result2.calories + " Carbs: ")
+            let titleEl = $("<h3>").text(result2.title);
+            let imageEl2 = $("<img>").addClass("pictures2").attr("data-name", result2.id).attr("src", result2.image).attr("style", "width: 300px");
+            let pEl2 = $("<p>").html("Calories: " + result2.calories + " Carbs: " + result2.carbs + " Fat: " + result2.fat + " Protein: " + result2.protein);
+            let buttonEl = $("<button>").addClass("saveButton").attr("data-value", result2.id).text("save").attr("data-name", result2.title).attr("data-src", result2.image);
 
+            mainDivEl2.append(titleEl, buttonEl, imageEl2, pEl2);
+            $("#attachHere2").append(mainDivEl2);
         }
 
 
@@ -288,19 +293,71 @@ function searchRandomly() {
             let title3 = $("<h3>").text(recipe.title);
             let imageEl3 = $("<img>").attr("src", recipe.image).attr("style", "width: 300px").attr("data-name", recipe.id);
             let about3 = $("<div>").html(recipe.summary);
-            let recipeDivEl3 = $("<div>").html("Ingredients: ");
+            let recipeDivEl3 = $("<div>").html($("<h4>").text("Ingredients: "));
+            let buttonEl = $("<button>").addClass("saveButton").attr("data-value", recipe.id).text("save").attr("data-name", recipe.title).attr("data-src", recipe.image);
 
             for (var y = 0; y < recipe.extendedIngredients.length; y++) {
                 let smallDivPicture = $("<div>").addClass("smallImages");
-                let ingredientsImg3 = $("<p>").text(recipe.extendedIngredients[y].amount + recipe.extendedIngredients[y].unit).add($("<img>").attr("src", "https://spoonacular.com/cdn/ingredients_100x100/" + recipe.extendedIngredients[y].image));
+                let ingredientsImg3 = $("<p>").text(recipe.extendedIngredients[y].amount + " " + recipe.extendedIngredients[y].unit).add($("<img>").attr("src", "https://spoonacular.com/cdn/ingredients_100x100/" + recipe.extendedIngredients[y].image)).add($("<p>").text(recipe.extendedIngredients[y].name));
                 smallDivPicture.html(ingredientsImg3);
                 recipeDivEl3.append(smallDivPicture);
             }
 
-            mainDiv3.append(title3, imageEl3, about3, recipeDivEl3);
+            mainDiv3.append(title3, buttonEl, imageEl3, about3, recipeDivEl3);
 
             $("#attachHere3").append(mainDiv3);
         }
 
     })
+}
+
+//
+//This is for saving the recipes
+
+$(document).on("click", ".saveButton", function(event) {
+    event.preventDefault();
+
+    let ulName = $(this).attr("data-name");
+    let ulId = $(this).attr("data-value");
+    let ulImage = $(this).attr("data-src");
+
+    foodObjectItem = {
+        name: ulName,
+        id: ulId,
+        image: ulImage
+    };
+
+    recipeArray.unshift(foodObjectItem);
+
+
+    localStorage.setItem("Recipes", JSON.stringify(recipeArray));
+
+    renderRecipes(ulName, ulId, ulImage);
+})
+
+function renderRecipes() {
+    // let savedItems = localStorage.getItem(ulName);
+
+    // console.log("this is the name", savedItems);
+    // for (var a = 0; a < )
+    recipeArray = JSON.parse(localStorage.getItem("Recipes")) || [];
+
+    if (recipeArray && recipeArray.length >= 1) {
+        $("#savedRecipes").empty();
+        for (var a = 0; a < recipeArray.length; a++) {
+            let listItemDiv = $("<div>").addClass("listItems");
+            let newListItem = $("<li>").addClass("foodListItem list-group-item").text(recipeArray[a].name).attr("data-value", recipeArray[a].id);
+            let listItemImage = $("<img>").attr("src", recipeArray[a].image).attr("style", "width: 200px");
+            listItemDiv.html(newListItem);
+            $("#savedRecipes").append(listItemDiv, listItemImage);
+        }
+    } else {
+        return;
+    }
+
+
+
+
+
+
 }

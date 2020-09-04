@@ -24,6 +24,7 @@
 
 .smallImages {
     display: inline-block;
+    margin: 10px;
 }
 
 .button {
@@ -38,4 +39,19 @@
 
 #meal {
     text-align: center;
+}
+
+.mainDiv2 {
+    display: inline-block;
+    width: 30%;
+    margin: 1%;
+}
+
+.saveButton {
+    /* display: inline-block; */
+    width: 60px;
+    float: right;
+    background: url(../images/save.png);
+    background-size: cover;
+    padding: 40px;
 }
