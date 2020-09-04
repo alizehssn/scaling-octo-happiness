@@ -55,3 +55,11 @@
     background-size: cover;
     padding: 40px;
 }
+
+.saveButton:hover {
+    transform: scale(1.3);
+}
+
+.priceButton {
+    display: inline-block;
+}

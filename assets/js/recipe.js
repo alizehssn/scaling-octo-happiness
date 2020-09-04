@@ -272,7 +272,7 @@ function searchRandomly() {
     })
 
     if (params3.length >= 1) {
-        queryURL3 += "&tags=" + params3.join(",");
+        queryURL3 += "&intolerances=" + params3.join(",");
     }
     if (numberOfRecipes3) {
         queryURL3 += "&number=" + numberOfRecipes3;
@@ -294,16 +294,17 @@ function searchRandomly() {
             let imageEl3 = $("<img>").attr("src", recipe.image).attr("style", "width: 300px").attr("data-name", recipe.id);
             let about3 = $("<div>").html(recipe.summary);
             let recipeDivEl3 = $("<div>").html($("<h4>").text("Ingredients: "));
+            let websiteEl = $("<a>").attr("href", recipe.sourceUrl).attr("target", "_blank").text("Click Here for Full Recipe");
             let buttonEl = $("<button>").addClass("saveButton").attr("data-value", recipe.id).text("save").attr("data-name", recipe.title).attr("data-src", recipe.image);
 
             for (var y = 0; y < recipe.extendedIngredients.length; y++) {
                 let smallDivPicture = $("<div>").addClass("smallImages");
-                let ingredientsImg3 = $("<p>").text(recipe.extendedIngredients[y].amount + " " + recipe.extendedIngredients[y].unit).add($("<img>").attr("src", "https://spoonacular.com/cdn/ingredients_100x100/" + recipe.extendedIngredients[y].image)).add($("<p>").text(recipe.extendedIngredients[y].name));
+                let ingredientsImg3 = $("<p>").text(recipe.extendedIngredients[y].amount.toFixed(2) + " " + recipe.extendedIngredients[y].unit).add($("<img>").attr("src", "https://spoonacular.com/cdn/ingredients_100x100/" + recipe.extendedIngredients[y].image)).add($("<p>").text(recipe.extendedIngredients[y].name));
                 smallDivPicture.html(ingredientsImg3);
                 recipeDivEl3.append(smallDivPicture);
             }
 
-            mainDiv3.append(title3, buttonEl, imageEl3, about3, recipeDivEl3);
+            mainDiv3.append(title3, buttonEl, imageEl3, about3, recipeDivEl3, websiteEl);
 
             $("#attachHere3").append(mainDiv3);
         }
@@ -311,8 +312,7 @@ function searchRandomly() {
     })
 }
 
-//
-//This is for saving the recipes
+//This is for saving the recipes in Local Storage
 
 $(document).on("click", ".saveButton", function(event) {
     event.preventDefault();
@@ -328,18 +328,13 @@ $(document).on("click", ".saveButton", function(event) {
     };
 
     recipeArray.unshift(foodObjectItem);
-
-
     localStorage.setItem("Recipes", JSON.stringify(recipeArray));
 
-    renderRecipes(ulName, ulId, ulImage);
+    renderRecipes();
 })
 
+// Renders all the saved recipes from Local Storage
 function renderRecipes() {
-    // let savedItems = localStorage.getItem(ulName);
-
-    // console.log("this is the name", savedItems);
-    // for (var a = 0; a < )
     recipeArray = JSON.parse(localStorage.getItem("Recipes")) || [];
 
     if (recipeArray && recipeArray.length >= 1) {
@@ -347,17 +342,14 @@ function renderRecipes() {
         for (var a = 0; a < recipeArray.length; a++) {
             let listItemDiv = $("<div>").addClass("listItems");
             let newListItem = $("<li>").addClass("foodListItem list-group-item").text(recipeArray[a].name).attr("data-value", recipeArray[a].id);
-            let listItemImage = $("<img>").attr("src", recipeArray[a].image).attr("style", "width: 200px");
+            let listItemImage = $("<img>").attr("src", recipeArray[a].image).attr("style", "width: 400px");
+            let priceButton = $("<button>").text("Price Breakdown").addClass("priceButton button success");
+            let lineSpacing = $("<br>");
+            let nutritionButton = $("<button>").text("Nutrition Breakdown").addClass("nutritionButton button");
             listItemDiv.html(newListItem);
-            $("#savedRecipes").append(listItemDiv, listItemImage);
+            $("#savedRecipes").append(listItemDiv, listItemImage, lineSpacing, priceButton, nutritionButton);
         }
     } else {
         return;
     }
-
-
-
-
-
-
 }
