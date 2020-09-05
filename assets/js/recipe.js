@@ -402,17 +402,19 @@ $(document).on("click", ".nutritionButton", function(event) {
             let steps = nutResponse[0].steps[c];
 
             let mainDiv = $("<div>").addClass("mainDiv1");
-            let stepNumber = $("<h5>").text("Step " + steps.number);
+            let stepNumber = $("<h5>").text("Step " + steps.number).add($("<br>"));
             let equipDiv = $("<div>").addClass("equip1");
+            let ingredDiv = $("<div>").addClass("ingred1");
 
             for (d = 0; d < steps.equipment.length; d++) {
                 let stepsEquip = steps.equipment[d];
 
-                let equipImg = $("<img>").attr("src", "https://spoonacular.com/cdn/equipment_100x100/" + stepsEquip.image);
+                let equipImg = $("<img>").attr("src", "https://spoonacular.com/cdn/equipment_100x100/" + stepsEquip.image).addClass("test").add($("<p>").addClass("pClass").text(stepsEquip.name));
                 equipDiv.append(equipImg);
             }
-
-            $(".forEquip" + positionAt).append(mainDiv, stepNumber, equipDiv);
+            mainDiv.append(stepNumber);
+            mainDiv.append(equipDiv);
+            $(".forEquip" + positionAt).append(mainDiv);
         }
     })
 })

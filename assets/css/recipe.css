@@ -69,3 +69,30 @@
     display: inline-block;
     margin: 10px;
 }
+
+.test {
+    vertical-align: top;
+    display: inline-block;
+}
+
+.pClass {
+    display: inline-block;
+}
+
+
+/*.mainDiv1 {
+    display: block;
+} 
+
+
+
+
+
+.pClass {
+    
+
+
+/* 
+.pClass {
+    display: inline-block;
+} */
