@@ -37,9 +37,10 @@
     width: 300px;
 }
 
-#meal {
+
+/* #meal {
     text-align: center;
-}
+} */
 
 .mainDiv2 {
     display: inline-block;
@@ -62,4 +63,9 @@
 
 .priceButton {
     display: inline-block;
+}
+
+.equipDiv {
+    display: inline-block;
+    margin: 10px;
 }

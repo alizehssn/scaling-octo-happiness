@@ -341,15 +341,108 @@ function renderRecipes() {
         $("#savedRecipes").empty();
         for (var a = 0; a < recipeArray.length; a++) {
             let listItemDiv = $("<div>").addClass("listItems");
-            let newListItem = $("<li>").addClass("foodListItem list-group-item").text(recipeArray[a].name).attr("data-value", recipeArray[a].id);
+            let newListItem = $("<li>").addClass("foodListItem list-group-item").text(recipeArray[a].name).attr("data-value", recipeArray[a].id).attr("data-number", [a]);
             let listItemImage = $("<img>").attr("src", recipeArray[a].image).attr("style", "width: 400px");
             let priceButton = $("<button>").text("Price Breakdown").addClass("priceButton button success");
             let lineSpacing = $("<br>");
             let nutritionButton = $("<button>").text("Nutrition Breakdown").addClass("nutritionButton button");
-            listItemDiv.html(newListItem);
-            $("#savedRecipes").append(listItemDiv, listItemImage, lineSpacing, priceButton, nutritionButton);
+            let equiptmentButton = $("<button>").text("Equiptment Needed").addClass("equipButton button warning")
+            let emptyDiv = $("<div>").addClass("forEquip" + [a]);
+            listItemDiv.html(newListItem).append(listItemDiv, listItemImage, lineSpacing, priceButton, nutritionButton, equiptmentButton, emptyDiv);
+            $("#savedRecipes").append(listItemDiv);
         }
     } else {
         return;
     }
 }
+
+// Click event for price breakdown
+
+$(document).on("click", ".priceButton", function(event) {
+    $("#chartContainer").empty();
+    event.preventDefault();
+
+    let recipeId = $(this).siblings().attr("data-value").toString();
+    let priceURL = "https://api.spoonacular.com/recipes/" + recipeId + "/priceBreakdownWidget?" + apiKey;
+
+
+    $.ajax({
+        url: priceURL,
+        method: "GET"
+    }).then(function(priceResult) {
+        console.log(priceResult);
+
+
+
+        // let parsed = JSON.parse(priceResult);
+        // console.log(parsed);
+        // let priceImage = $("<img>").attr("src", priceResult);
+
+        // $("#priceBreakdown").append(priceResult);
+
+    })
+
+})
+
+$(document).on("click", ".nutritionButton", function(event) {
+    event.preventDefault();
+
+    let priceId = $(this).siblings().attr("data-value").toString();
+    let nutritionUrl = "https://api.spoonacular.com/recipes/" + priceId + "/analyzedInstructions?" + apiKey;
+    let positionAt = $(this).siblings().attr("data-number");
+
+
+    $.ajax({
+        url: nutritionUrl,
+        method: "GET"
+    }).then(function(nutResponse) {
+        console.log(nutResponse);
+
+        for (var c = 0; c < nutResponse[0].steps.length; c++) {
+            let steps = nutResponse[0].steps[c];
+
+            let mainDiv = $("<div>").addClass("mainDiv1");
+            let stepNumber = $("<h5>").text("Step " + steps.number);
+            let equipDiv = $("<div>").addClass("equip1");
+
+            for (d = 0; d < steps.equipment.length; d++) {
+                let stepsEquip = steps.equipment[d];
+
+                let equipImg = $("<img>").attr("src", "https://spoonacular.com/cdn/equipment_100x100/" + stepsEquip.image);
+                equipDiv.append(equipImg);
+            }
+
+            $(".forEquip" + positionAt).append(mainDiv, stepNumber, equipDiv);
+        }
+    })
+})
+
+$(document).on("click", ".equipButton", function(event) {
+    event.preventDefault();
+
+    let equipId = $(this).siblings().attr("data-value").toString();
+    let equipUrl = "https://api.spoonacular.com/recipes/" + equipId + "/equipmentWidget.json?" + apiKey;
+    let positionAt = $(this).siblings().attr("data-number");
+    $(".forEquip" + positionAt).empty();
+
+
+    $.ajax({
+        url: equipUrl,
+        method: "GET"
+    }).then(function(equipResult) {
+        console.log(equipResult);
+
+        for (var b = 0; b < equipResult.equipment.length; b++) {
+            console.log(equipResult.equipment.length);
+            let eResults = equipResult.equipment[b];
+            let equipDiv = $("<div>").addClass("equipDiv");
+            var equipImg = $("<img>").addClass("smallEquip").attr("src", "https://spoonacular.com/cdn/equipment_100x100/" + eResults.image).add($("<p>").addClass("forEquip").text(eResults.name));
+            equipDiv.html(equipImg);
+            $(".forEquip" + positionAt).append(equipDiv);
+            console.log("number", [b])
+        }
+
+    })
+
+
+})
