@@ -3,7 +3,8 @@
 //backup api    1db9120bf8854065b69f6e8dba48a42e;
 ///FIRST SEARCH   by ingredient
 //
-var apiKey = "&apiKey=0ba7a0fdd45c497a8afd81dae904a16c";
+// var apiKey = "&apiKey=0ba7a0fdd45c497a8afd81dae904a16c";
+var apiKey = "&apiKey=1db9120bf8854065b69f6e8dba48a42e";
 var recipeArray = [];
 var foodObjectItem = {};
 renderRecipes();
@@ -252,18 +253,20 @@ function searchRandomly() {
             params.push($(this).val());
         }
     })
+
+    $("#mealFilters").children("input").each(function() {
+            if ($(this).prop("checked") === true) {
+                params.push($(this).val());
+            }
+        })
+        // if (params2.length >= 1) {
+        //     queryURL3 += "&tags=" + params2.join(",");
+        // }
+
     if (params.length >= 1) {
         queryURL3 += "&tags=" + params.join(",");
     }
 
-    // $("#mealFilters").children("input").each(function() {
-    //     if ($(this).prop("checked") === true) {
-    //         params2.push($(this).val());
-    //     }
-    // })
-    // if (params2.length >= 1) {
-    //     queryURL3 += "&tags=" + params2.join(",");
-    // }
 
     $("#intoleranceFilters").children("input").each(function() {
         if ($(this).prop("checked") === true) {
@@ -292,10 +295,33 @@ function searchRandomly() {
             let mainDiv3 = $("<div>").addClass("mainDiv3");
             let title3 = $("<h3>").text(recipe.title);
             let imageEl3 = $("<img>").attr("src", recipe.image).attr("style", "width: 300px").attr("data-name", recipe.id);
+            let badgesDiv = $("<div>");
             let about3 = $("<div>").html(recipe.summary);
             let recipeDivEl3 = $("<div>").html($("<h4>").text("Ingredients: "));
             let websiteEl = $("<a>").attr("href", recipe.sourceUrl).attr("target", "_blank").text("Click Here for Full Recipe");
             let buttonEl = $("<button>").addClass("saveButton").attr("data-value", recipe.id).text("save").attr("data-name", recipe.title).attr("data-src", recipe.image);
+
+            if (recipe.vegan === true) {
+                let badgesImg = $("<img>").attr("src", "./assets/images/vegan.jpg").attr("style", "width: 100px");
+                badgesDiv.append(badgesImg);
+            }
+            if (recipe.vegetarian === true) {
+                let badgesImg = $("<img>").attr("src", "./assets/images/vegetarian.jpg").attr("style", "width: 100px");
+                badgesDiv.append(badgesImg);
+            }
+            if (recipe.glutenFree === true) {
+                let badgesImg = $("<img>").attr("src", "./assets/images/glutenFree.jpg").attr("style", "width: 100px");
+                badgesDiv.append(badgesImg);
+            }
+            if (recipe.dairyFree === true) {
+                let badgesImg = $("<img>").attr("src", "./assets/images/dairyFree.jpg").attr("style", "width: 100px");
+                badgesDiv.append(badgesImg);
+            }
+            if (recipe.veryHealthy === true) {
+                let badgesImg = $("<img>").attr("src", "./assets/images/healthy.jpg").attr("style", "width: 100px");
+                badgesDiv.append(badgesImg);
+            }
+
 
             for (var y = 0; y < recipe.extendedIngredients.length; y++) {
                 let smallDivPicture = $("<div>").addClass("smallImages");
@@ -304,7 +330,7 @@ function searchRandomly() {
                 recipeDivEl3.append(smallDivPicture);
             }
 
-            mainDiv3.append(title3, buttonEl, imageEl3, about3, recipeDivEl3, websiteEl);
+            mainDiv3.append(title3, buttonEl, imageEl3, badgesDiv, about3, recipeDivEl3, websiteEl);
 
             $("#attachHere3").append(mainDiv3);
         }
