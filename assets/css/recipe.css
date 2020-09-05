@@ -75,9 +75,23 @@
     display: inline-block;
 }
 
-.pClass {
-    display: inline-block;
+.equip1 {
+    display: flex;
 }
+
+.tester {
+    display: inline-block;
+    margin: 10px;
+}
+
+.foodListItem {
+    font-size: 30px;
+}
+
+
+/* .pClass {
+    display: inline-block;
+} */
 
 
 /*.mainDiv1 {

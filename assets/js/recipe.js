@@ -345,8 +345,8 @@ function renderRecipes() {
             let listItemImage = $("<img>").attr("src", recipeArray[a].image).attr("style", "width: 400px");
             let priceButton = $("<button>").text("Price Breakdown").addClass("priceButton button success");
             let lineSpacing = $("<br>");
-            let nutritionButton = $("<button>").text("Nutrition Breakdown").addClass("nutritionButton button");
-            let equiptmentButton = $("<button>").text("Equiptment Needed").addClass("equipButton button warning")
+            let nutritionButton = $("<button>").text("Recipe Instructions").addClass("nutritionButton button");
+            let equiptmentButton = $("<button>").text("Equiptment Needed").addClass("equipButton button warning").add($("<br><br>"));
             let emptyDiv = $("<div>").addClass("forEquip" + [a]);
             listItemDiv.html(newListItem).append(listItemDiv, listItemImage, lineSpacing, priceButton, nutritionButton, equiptmentButton, emptyDiv);
             $("#savedRecipes").append(listItemDiv);
@@ -397,24 +397,46 @@ $(document).on("click", ".nutritionButton", function(event) {
         method: "GET"
     }).then(function(nutResponse) {
         console.log(nutResponse);
+        $(".forEquip" + positionAt).empty();
 
         for (var c = 0; c < nutResponse[0].steps.length; c++) {
             let steps = nutResponse[0].steps[c];
 
             let mainDiv = $("<div>").addClass("mainDiv1");
-            let stepNumber = $("<h5>").text("Step " + steps.number).add($("<br>"));
+            let mainDiv2 = $("<div>").addClass("mainDiv1");
+            let stepNumber = $("<h5>").text("Step " + steps.number).add($("<hr>"));
+            let stepsInstruction = $("<div>").add($("<h6>").html(steps.step));
             let equipDiv = $("<div>").addClass("equip1");
             let ingredDiv = $("<div>").addClass("ingred1");
+            mainDiv.append(stepNumber, stepsInstruction, mainDiv2);
 
             for (d = 0; d < steps.equipment.length; d++) {
                 let stepsEquip = steps.equipment[d];
-
+                let testDiv = $("<div>").addClass("tester");
                 let equipImg = $("<img>").attr("src", "https://spoonacular.com/cdn/equipment_100x100/" + stepsEquip.image).addClass("test").add($("<p>").addClass("pClass").text(stepsEquip.name));
-                equipDiv.append(equipImg);
+                testDiv.html(equipImg);
+
+                mainDiv.append(testDiv);
+                $(".forEquip" + positionAt).append(mainDiv);
             }
-            mainDiv.append(stepNumber);
-            mainDiv.append(equipDiv);
-            $(".forEquip" + positionAt).append(mainDiv);
+
+            for (var e = 0; e < steps.ingredients.length; e++) {
+                let stepsIngrd = steps.ingredients[e];
+                console.log(stepsIngrd, "hi")
+
+                let testDiv2 = $("<div>").addClass("tester");
+                let ingredImg = $("<img>").attr("src", "https://spoonacular.com/cdn/ingredients_100x100/" + stepsIngrd.image).addClass("test").add($("<p>").addClass("pClass").text(stepsIngrd.name));
+
+                testDiv2.html(ingredImg);
+                mainDiv.append(testDiv2);
+                $(".forEquip" + positionAt).append(mainDiv2);
+
+            }
+
+
+
+            // mainDiv.append(equipDiv);
+
         }
     })
 })
@@ -435,13 +457,12 @@ $(document).on("click", ".equipButton", function(event) {
         console.log(equipResult);
 
         for (var b = 0; b < equipResult.equipment.length; b++) {
-            console.log(equipResult.equipment.length);
             let eResults = equipResult.equipment[b];
             let equipDiv = $("<div>").addClass("equipDiv");
             var equipImg = $("<img>").addClass("smallEquip").attr("src", "https://spoonacular.com/cdn/equipment_100x100/" + eResults.image).add($("<p>").addClass("forEquip").text(eResults.name));
             equipDiv.html(equipImg);
             $(".forEquip" + positionAt).append(equipDiv);
-            console.log("number", [b])
+
         }
 
     })
