@@ -52,7 +52,7 @@ function searchByIngredients() {
             let mainDiv1 = $("<div>").addClass("card mainCard1");
             let middleDiv1 = $("<div>").addClass("card-divider").html(responseItems.title);
             let imageEl1 = $("<img>").addClass("pictures1").attr("src", responseItems.image).attr("data-name", responseItems.id);
-            let buttonEl = $("<button>").addClass("saveButton").attr("data-value", responseItems.id).text("save").attr("data-name", responseItems.title).attr("data-src", responseItems.image);
+            let buttonEl = $("<button>").addClass("saveButton").attr("data-value", responseItems.id).text("❤️").attr("data-name", responseItems.title).attr("data-src", responseItems.image);
             mainDiv1.append(middleDiv1, buttonEl, imageEl1);
 
             $("#attachHere1").append(mainDiv1);
@@ -215,7 +215,7 @@ function searchByNutrients() {
             let titleEl = $("<h3>").text(result2.title);
             let imageEl2 = $("<img>").addClass("pictures2").attr("data-name", result2.id).attr("src", result2.image).attr("style", "width: 300px");
             let pEl2 = $("<p>").html("Calories: " + result2.calories + " Carbs: " + result2.carbs + " Fat: " + result2.fat + " Protein: " + result2.protein);
-            let buttonEl = $("<button>").addClass("saveButton").attr("data-value", result2.id).text("save").attr("data-name", result2.title).attr("data-src", result2.image);
+            let buttonEl = $("<button>").addClass("saveButton").attr("data-value", result2.id).text("❤️").attr("data-name", result2.title).attr("data-src", result2.image);
 
             mainDivEl2.append(titleEl, buttonEl, imageEl2, pEl2);
             $("#attachHere2").append(mainDivEl2);
@@ -298,27 +298,27 @@ function searchRandomly() {
             let badgesDiv = $("<div>");
             let about3 = $("<div>").html(recipe.summary);
             let recipeDivEl3 = $("<div>").html($("<h4>").text("Ingredients: "));
-            let websiteEl = $("<a>").attr("href", recipe.sourceUrl).attr("target", "_blank").text("Click Here for Full Recipe");
-            let buttonEl = $("<button>").addClass("saveButton").attr("data-value", recipe.id).text("save").attr("data-name", recipe.title).attr("data-src", recipe.image);
+            let websiteEl = $("<a>").attr("href", recipe.sourceUrl).attr("target", "_blank").text("Click Here for Full Recipe").add($("<hr>"));
+            let buttonEl = $("<button>").addClass("saveButton").attr("data-value", recipe.id).text("❤️").attr("data-name", recipe.title).attr("data-src", recipe.image);
 
             if (recipe.vegan === true) {
-                let badgesImg = $("<img>").attr("src", "./assets/images/vegan.jpg").attr("style", "width: 100px");
+                let badgesImg = $("<img>").attr("src", "./assets/images/vegan.jpg").attr("style", "width: 100px").attr("style", "height: 100px");
                 badgesDiv.append(badgesImg);
             }
             if (recipe.vegetarian === true) {
-                let badgesImg = $("<img>").attr("src", "./assets/images/vegetarian.jpg").attr("style", "width: 100px");
+                let badgesImg = $("<img>").attr("src", "./assets/images/vegetarian.jpg").attr("style", "width: 100px").attr("style", "height: 100px");
                 badgesDiv.append(badgesImg);
             }
             if (recipe.glutenFree === true) {
-                let badgesImg = $("<img>").attr("src", "./assets/images/glutenFree.jpg").attr("style", "width: 100px");
+                let badgesImg = $("<img>").attr("src", "./assets/images/glutenFree.jpg").attr("style", "width: 100px").attr("style", "height: 100px");
                 badgesDiv.append(badgesImg);
             }
             if (recipe.dairyFree === true) {
-                let badgesImg = $("<img>").attr("src", "./assets/images/dairyFree.jpg").attr("style", "width: 100px");
+                let badgesImg = $("<img>").attr("src", "./assets/images/dairyFree.jpg").attr("style", "width: 100px").attr("style", "height: 100px");
                 badgesDiv.append(badgesImg);
             }
             if (recipe.veryHealthy === true) {
-                let badgesImg = $("<img>").attr("src", "./assets/images/healthy.jpg").attr("style", "width: 100px");
+                let badgesImg = $("<img>").attr("src", "./assets/images/healthy.jpg").attr("style", "width: 100px").attr("style", "height: 100px");
                 badgesDiv.append(badgesImg);
             }
 
@@ -369,12 +369,12 @@ function renderRecipes() {
             let listItemDiv = $("<div>").addClass("listItems");
             let newListItem = $("<li>").addClass("foodListItem list-group-item").text(recipeArray[a].name).attr("data-value", recipeArray[a].id).attr("data-number", [a]);
             let listItemImage = $("<img>").attr("src", recipeArray[a].image).attr("style", "width: 400px");
-            let priceButton = $("<button>").text("Price Breakdown").addClass("priceButton button success");
+            let priceButton = $("<button>").text("Remove Recipe").addClass("priceButton button success").add($("<hr><br>"));
             let lineSpacing = $("<br>");
             let nutritionButton = $("<button>").text("Recipe Instructions").addClass("nutritionButton button");
-            let equiptmentButton = $("<button>").text("Equiptment Needed").addClass("equipButton button warning").add($("<br><br>"));
+            let equiptmentButton = $("<button>").text("Equiptment Needed").addClass("equipButton button warning");
             let emptyDiv = $("<div>").addClass("forEquip" + [a]);
-            listItemDiv.html(newListItem).append(listItemDiv, listItemImage, lineSpacing, priceButton, nutritionButton, equiptmentButton, emptyDiv);
+            listItemDiv.html(newListItem).append(listItemDiv, listItemImage, lineSpacing, nutritionButton, equiptmentButton, priceButton, emptyDiv);
             $("#savedRecipes").append(listItemDiv);
         }
     } else {
@@ -385,28 +385,20 @@ function renderRecipes() {
 // Click event for price breakdown
 
 $(document).on("click", ".priceButton", function(event) {
-    $("#chartContainer").empty();
     event.preventDefault();
 
-    let recipeId = $(this).siblings().attr("data-value").toString();
-    let priceURL = "https://api.spoonacular.com/recipes/" + recipeId + "/priceBreakdownWidget?" + apiKey;
+    let dataId = $(this).siblings("li.foodListItem").attr("data-value");
+    let listItem = $(this).parent();
+    listItem.empty();
 
+    recipeArray = JSON.parse(localStorage.getItem("Recipes")) || [];
 
-    $.ajax({
-        url: priceURL,
-        method: "GET"
-    }).then(function(priceResult) {
-        console.log(priceResult);
+    const filteredRecipes = recipeArray.filter(function(recipes) {
 
-
-
-        // let parsed = JSON.parse(priceResult);
-        // console.log(parsed);
-        // let priceImage = $("<img>").attr("src", priceResult);
-
-        // $("#priceBreakdown").append(priceResult);
-
+        return recipes.id != dataId;
     })
+
+    localStorage.setItem("Recipes", JSON.stringify(filteredRecipes));
 
 })
 
@@ -448,7 +440,7 @@ $(document).on("click", ".nutritionButton", function(event) {
 
             for (var e = 0; e < steps.ingredients.length; e++) {
                 let stepsIngrd = steps.ingredients[e];
-                console.log(stepsIngrd, "hi")
+
 
                 let testDiv2 = $("<div>").addClass("tester");
                 let ingredImg = $("<img>").attr("src", "https://spoonacular.com/cdn/ingredients_100x100/" + stepsIngrd.image).addClass("test").add($("<p>").addClass("pClass").text(stepsIngrd.name));

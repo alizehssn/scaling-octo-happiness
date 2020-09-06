@@ -1,7 +1,3 @@
-#panel1c {
-    background-color: rgb(189, 189, 189);
-}
-
 .mainDiv3 {
     width: 80%;
     display: inline-block;
@@ -48,17 +44,27 @@
     margin: 1%;
 }
 
+#savedRecipes {
+    margin-left: 10%;
+    width: 80%;
+    display: inline-block;
+}
+
+#savedSearches {
+    text-align: center;
+}
+
 .saveButton {
     /* display: inline-block; */
-    width: 60px;
     float: right;
-    background: url(../images/save.png);
-    background-size: cover;
-    padding: 40px;
+    /* background: url(../images/save.png);
+    background-size: cover; */
+    padding: 10px;
+    font-size: 30px;
 }
 
 .saveButton:hover {
-    transform: scale(1.3);
+    transform: scale(1.4);
 }
 
 .priceButton {

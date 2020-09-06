@@ -37,9 +37,9 @@
 
 
     <ul class="tabs" data-active-collapse="true" data-tabs id="collapsing-tabs">
-        <li class="tabs-title is-active"><a href="#panel1c" aria-selected="true">Search Recipes By Ingredients</a></li>
-        <li class="tabs-title"><a href="#panel2c">Search Recipes By Nutrients</a></li>
-        <li class="tabs-title"><a href="#panel3c">Search Random Recipes</a></li>
+        <li class="tabs-title"><a href="#panel1c">Search Random Recipes</a></li>
+        <li class="tabs-title is-active"><a href="#panel2c" aria-selected="true">Search Recipes By Ingredients</a></li>
+        <li class="tabs-title"><a href="#panel3c">Search Recipes By Nutrients</a></li>
         <li class="tabs-title"><a href="#panel4c">Saved Recipes</a></li>
     </ul>
 
@@ -47,7 +47,7 @@
 
 
         <!-- This is the first tab which is search by nutrients -->
-        <div class="tabs-panel is-active" id="panel1c">
+        <div class="tabs-panel is-active" id="panel2c">
             <h2>Seach Recipes By Ingredients</h2>
             <form>
                 <div class="grid-container">
@@ -73,7 +73,7 @@
 
 
         <!-- This is for the second tab which is Search by Nutrients -->
-        <div class="tabs-panel" id="panel2c">
+        <div class="tabs-panel" id="panel3c">
             <h2>Seach Recipes By Nutrients</h2>
             <!-- Dropdown searches start here -->
             <button class="button" type="button" data-toggle="carbs">Carbohydrates </button>
@@ -398,7 +398,7 @@
 
 
         <!-- This is the third tab which is search ramdomly -->
-        <div class="tabs-panel mainContainer" id="panel3c">
+        <div class="tabs-panel mainContainer" id="panel1c">
             <h2>Search Recipes Randomly</h2>
             <form>
                 <div class="grid-container">
@@ -471,10 +471,10 @@
         </div>
         <!-- This is for the 4th tab, Saved Searches -->
         <div class="tabs-panel" id="panel4c">
-            <h2>Saved Searches</h2>
+            <h2 id="savedSearches">Saved Recipes</h2>
             <hr>
             <ul id="savedRecipes">
-                <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+
 
             </ul>
 
