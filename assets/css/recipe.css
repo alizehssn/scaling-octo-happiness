@@ -1,0 +1,94 @@
+.mainDiv3 {
+  width: 80%;
+  display: inline-block;
+  margin-left: 10%;
+  margin-top: 20px;
+}
+
+.mainContainer {
+  text-align: center;
+}
+
+.mainCard1 {
+  width: 30%;
+  display: inline-block;
+  margin-right: 2%;
+  text-align: center;
+  background-color: rgb(189, 189, 189);
+  border: 1 rem solid;
+}
+
+.smallImages {
+  display: inline-block;
+  margin: 10px;
+}
+
+.button {
+  margin: 10px;
+  width: 150px;
+  padding: 30px;
+}
+
+#selectRecipes3 {
+  width: 300px;
+}
+
+/* #meal {
+    text-align: center;
+} */
+
+.mainDiv2 {
+  display: inline-block;
+  width: 30%;
+  margin: 1%;
+}
+
+#savedRecipes {
+  margin-left: 10%;
+  width: 80%;
+  display: inline-block;
+}
+
+#savedSearches {
+  text-align: center;
+}
+
+.saveButton {
+  /* display: inline-block; */
+  float: right;
+  /* background: url(../images/save.png);
+    background-size: cover; */
+  padding: 10px;
+  font-size: 30px;
+}
+
+.saveButton:hover {
+  transform: scale(1.4);
+}
+
+.priceButton {
+  display: inline-block;
+}
+
+.equipDiv {
+  display: inline-block;
+  margin: 10px;
+}
+
+.test {
+  vertical-align: top;
+  display: inline-block;
+}
+
+.equip1 {
+  display: flex;
+}
+
+.tester {
+  display: inline-block;
+  margin: 10px;
+}
+
+.foodListItem {
+  font-size: 30px;
+}

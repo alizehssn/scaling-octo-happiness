@@ -1,0 +1,551 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vegan Police Recipes</title>
+    <script src="https://use.fontawesome.com/e94fce3fff.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
+        integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/nav.css">
+    <link rel="stylesheet" href="./assets/css/recipe.css">
+
+
+
+
+</head>
+
+<body style="background-color: grey">
+
+    <nav>
+        <div class="logo">
+            <h4>The Nav</h4>
+        </div>
+        <ul class="navLinks">
+            <li class="li1"><a href="./food.html">Food</a></li>
+            <li class="li1"><a href="./makeup.html">Makeup</a></li>
+            <li class="li1"><a href="./recipes.html">Recipes</a></li>
+        </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
+    </nav>
+
+
+
+    <ul class="tabs" data-active-collapse="true" data-tabs id="collapsing-tabs">
+        <li class="tabs-title is-active"><a href="#panel1c" aria-selected="true">Search Recipes By Ingredients</a></li>
+        <li class="tabs-title"><a href="#panel2c">Search Recipes By Nutrients</a></li>
+        <li class="tabs-title"><a href="#panel3c">Search Random Recipes</a></li>
+        <li class="tabs-title"><a href="#panel4c">Saved Recipes</a></li>
+    </ul>
+
+    <div class="tabs-content" data-tabs-content="collapsing-tabs">
+
+
+        <!-- This is the first tab which is search by nutrients -->
+        <div class="tabs-panel is-active" id="panel1c">
+            <h2>Seach Recipes By Ingredients</h2>
+            <form>
+                <div class="grid-container">
+                    <div class="grid-x grid-padding-x">
+                        <div class="medium-6 cell">
+                            <label>Search for a product
+                                <input type="text" placeholder="Apples flour sugar etc" id="searchBar1">
+                                <label>How many recipes to search for?
+                                    <select id="selectRecipes1">
+                                        <option value="1">1</option>
+                                        <option selected value="5">5</option>
+                                        <option value="10">10</option>
+                                    </select>
+                                </label>
+                                <a class="button primary" id="submitButton1">Submit</a>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="container" id="attachHere1"></div>
+        </div>
+
+
+        <!-- This is for the second tab which is Search by Nutrients -->
+        <div class="tabs-panel" id="panel2c">
+            <h2>Seach Recipes By Nutrients</h2>
+            <!-- Dropdown searches start here -->
+            <button class="button" type="button" data-toggle="carbs">Carbohydrates </button>
+            <div class="dropdown-pane" id="carbs" data-dropdown data-auto-focus="true">
+                Minimum or Maximum in grams
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell medium-6">
+                                <label>Min.
+                                    <input id="carbsMin" type="number" placeholder="Ex. 10">
+                                </label>
+                            </div>
+                            <div class="cell medium-6">
+                                <label>Max
+                                    <input id="carbsMax" type="number" placeholder="Ex. 100">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Next dropdown -->
+            <button class="button" type="button" data-toggle="protein">Protein </button>
+            <div class="dropdown-pane" id="protein" data-dropdown data-auto-focus="true">
+                Minimum or Maximum in grams
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell medium-6">
+                                <label>Min.
+                                    <input id="proteinMin" type="number" placeholder="Ex. 10">
+                                </label>
+                            </div>
+                            <div class="cell medium-6">
+                                <label>Max
+                                    <input id="proteinMax" type="number" placeholder="Ex. 100">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Next dropdown -->
+            <button class="button" type="button" data-toggle="calories">Calories </button>
+            <div class="dropdown-pane" id="calories" data-dropdown data-auto-focus="true">
+                Minimum or Maximum Calories
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell medium-6">
+                                <label>Min.
+                                    <input id="caloriesMin" type="number" placeholder="Ex. 50">
+                                </label>
+                            </div>
+                            <div class="cell medium-6">
+                                <label>Max
+                                    <input id="caloriesMax" type="number" placeholder="Ex. 800">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Next dropdown -->
+            <button class="button" type="button" data-toggle="fat">Fat </button>
+            <div class="dropdown-pane" id="fat" data-dropdown data-auto-focus="true">
+                Minimum or Maximum in grams
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell medium-6">
+                                <label>Min.
+                                    <input id="fatMin" type="number" placeholder="Ex. 10">
+                                </label>
+                            </div>
+                            <div class="cell medium-6">
+                                <label>Max
+                                    <input id="fatMax" type="number" placeholder="Ex. 100">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Next dropdown -->
+            <button class="button" type="button" data-toggle="satfat">Saturated Fat</button>
+            <div class="dropdown-pane" id="satfat" data-dropdown data-auto-focus="true">
+                Minimum or Maximum in grams
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell medium-6">
+                                <label>Min.
+                                    <input id="satfatMin" type="number" placeholder="Ex. 10">
+                                </label>
+                            </div>
+                            <div class="cell medium-6">
+                                <label>Max
+                                    <input id="satfatMax" type="number" placeholder="Ex. 100">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Next dropdown -->
+            <button class="button" type="button" data-toggle="Cholesterol">Cholesterol</button>
+            <div class="dropdown-pane" id="Cholesterol" data-dropdown data-auto-focus="true">
+                Minimum or Maximum in milligrams
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell medium-6">
+                                <label>Min.
+                                    <input id="cholesterolMin" type="number" placeholder="Ex. 10">
+                                </label>
+                            </div>
+                            <div class="cell medium-6">
+                                <label>Max
+                                    <input id="cholesterolMax" type="number" placeholder="Ex. 100">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Next dropdown -->
+            <button class="button" type="button" data-toggle="calcium">Calcium</button>
+            <div class="dropdown-pane" id="calcium" data-dropdown data-auto-focus="true">
+                Minimum or Maximum in milligrams
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell medium-6">
+                                <label>Min.
+                                    <input id="calciumMin" type="number" placeholder="Ex. 10">
+                                </label>
+                            </div>
+                            <div class="cell medium-6">
+                                <label>Max
+                                    <input id="calciumMax" type="number" placeholder="Ex. 100">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Next dropdown -->
+            <button class="button" type="button" data-toggle="fiber">Fiber</button>
+            <div class="dropdown-pane" id="fiber" data-dropdown data-auto-focus="true">
+                Minimum or Maximum in grams
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell medium-6">
+                                <label>Min.
+                                    <input id="fiberMin" type="number" placeholder="Ex. 10">
+                                </label>
+                            </div>
+                            <div class="cell medium-6">
+                                <label>Max
+                                    <input id="fiberMax" type="number" placeholder="Ex. 100">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Next dropdown -->
+            <button class="button" type="button" data-toggle="iron">Iron</button>
+            <div class="dropdown-pane" id="iron" data-dropdown data-auto-focus="true">
+                Minimum or Maximum in milligrams
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell medium-6">
+                                <label>Min.
+                                    <input id="ironMin" type="number" placeholder="Ex. 10">
+                                </label>
+                            </div>
+                            <div class="cell medium-6">
+                                <label>Max
+                                    <input id="ironMax" type="number" placeholder="Ex. 100">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Next dropdown -->
+            <button class="button" type="button" data-toggle="potassium">Potassium</button>
+            <div class="dropdown-pane" id="potassium" data-dropdown data-auto-focus="true">
+                Minimum or Maximum in milligrams
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell medium-6">
+                                <label>Min.
+                                    <input id="potassiumMin" type="number" placeholder="Ex. 10">
+                                </label>
+                            </div>
+                            <div class="cell medium-6">
+                                <label>Max
+                                    <input id="potassiumMax" type="number" placeholder="Ex. 100">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Next dropdown -->
+            <button class="button" type="button" data-toggle="sodium">Sodium</button>
+            <div class="dropdown-pane" id="sodium" data-dropdown data-auto-focus="true">
+                Minimum or Maximum in milligrams
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell medium-6">
+                                <label>Min.
+                                    <input id="sodiumMin" type="number" placeholder="Ex. 10">
+                                </label>
+                            </div>
+                            <div class="cell medium-6">
+                                <label>Max
+                                    <input id="sodiumMax" type="number" placeholder="Ex. 100">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Next dropdown -->
+            <button class="button" type="button" data-toggle="sugar">Sugar</button>
+            <div class="dropdown-pane" id="sugar" data-dropdown data-auto-focus="true">
+                Minimum or Maximum in milligrams
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell medium-6">
+                                <label>Min.
+                                    <input id="sugarMin" type="number" placeholder="Ex. 10">
+                                </label>
+                            </div>
+                            <div class="cell medium-6">
+                                <label>Max
+                                    <input id="sugarMax" type="number" placeholder="Ex. 100">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Next dropdown -->
+            <button class="button" type="button" data-toggle="vitaminc">Vitamin C</button>
+            <div class="dropdown-pane" id="vitaminc" data-dropdown data-auto-focus="true">
+                Minimum or Maximum in milligrams
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell medium-6">
+                                <label>Min.
+                                    <input id="vitamincMin" type="number" placeholder="Ex. 10">
+                                </label>
+                            </div>
+                            <div class="cell medium-6">
+                                <label>Max
+                                    <input id="vitamincMax" type="number" placeholder="Ex. 100">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <!-- Next dropdown -->
+            <button class="button" type="button" data-toggle="zinc">Zinc</button>
+            <div class="dropdown-pane" id="zinc" data-dropdown data-auto-focus="true">
+                Minimum or Maximum in milligrams
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-margin-x">
+                            <div class="cell medium-6">
+                                <label>Min.
+                                    <input id="zincMin" type="number" placeholder="Ex. 10">
+                                </label>
+                            </div>
+                            <div class="cell medium-6">
+                                <label>Max
+                                    <input id="zincMax" type="number" placeholder="Ex. 100">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div><br>
+            <!-- End of drop downs -->
+            <form><br><br>
+                <div class="grid-container">
+                    <div class="grid-x grid-padding-x">
+                        <div class="medium-6 cell">
+                            <label>How many recipes to search for?
+                                <select id="selectRecipes2">
+                                    <option value="1">1</option>
+                                    <option selected value="5">5</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </label>
+                            <a class="button primary" id="submitButton2">Submit</a>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div id="attachHere2">
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- This is the third tab which is search ramdomly -->
+        <div class="tabs-panel mainContainer" id="panel3c">
+            <h2>Search Recipes Randomly</h2>
+            <form>
+                <div class="grid-container">
+                    <div class="grid-x grid-padding-x">
+                        <div class="large-12 cell">
+                            <label>
+                                <fieldset id="dietFilters" class="large-7 cell">
+                                    <legend>
+                                        <h3>Search by diet restrictions: </h3>
+                                    </legend>
+                                    <input id="checkbox1" type="checkbox" value="vegan"><label
+                                        for="checkbox1">Vegan</label>
+                                    <input id="checkbox2" type="checkbox" value="vegetarian"><label
+                                        for="checkbox2">Vegetarian</label>
+                                    <input id="checkbox3" type="checkbox" value="pescetarian"><label
+                                        for="checkbox3">Pescetarian</label>
+
+                                    <!-- This is for the meal filters -->
+                                    <fieldset id="mealFilters" class="large-7 cell">
+                                        <legend>
+                                            <h3 id="meal">Search by Meal: </h3>
+                                        </legend>
+                                        <input id="checkbox4" type="checkbox" value="breakfast"><label
+                                            for="checkbox4">Breakfast</label>
+                                        <input id="checkbox5" type="checkbox" value="main course"><label
+                                            for="checkbox5">Main Course</label>
+                                        <input id="checkbox6" type="checkbox" value="dessert"><label
+                                            for="checkbox6">Dessert</label>
+                                        <input id="checkbox7" type="checkbox" value="appetizer"><label
+                                            for="checkbox7">Appetizer</label>
+                                        <input id="checkbox8" type="checkbox" value="salad"><label
+                                            for="checkbox8">Salad</label>
+                                        <input id="checkbox9" type="checkbox" value="soup"><label
+                                            for="checkbox9">Soup</label>
+                                        <input id="checkbox10" type="checkbox" value="beverage"><label
+                                            for="checkbox10">Beverage</label>
+                                        <input id="checkbox12" type="checkbox" value="bread"><label
+                                            for="checkbox12">Bread</label>
+
+                                        <!-- This is for intolerances filters -->
+                                        <fieldset id="intoleranceFilters" class="large-7 cell">
+                                            <legend>
+                                                <h3>Search By Intolerances</h3>
+                                            </legend>
+                                            <input id="checkbox13" type="checkbox" value="dairy"><label
+                                                for="checkbox13">Dairy</label>
+                                            <input id="checkbox14" type="checkbox" value="soy"><label
+                                                for="checkbox14">Soy</label>
+                                            <input id="checkbox15" type="checkbox" value="egg"><label
+                                                for="checkbox15">Egg</label>
+                                            <input id="checkbox16" type="checkbox" value="treenut"><label
+                                                for="checkbox16">Tree Nut</label>
+                                            <input id="checkbox17" type="checkbox" value="peanut"><label
+                                                for="checkbox17">Peanut</label>
+                                            <input id="checkbox18" type="checkbox" value="sesame"><label
+                                                for="checkbox18">Sesame</label>
+                                            <input id="checkbox19" type="checkbox" value="gluten"><label
+                                                for="checkbox19">Gluten</label>
+                                            <input id="checkbox20" type="checkbox" value="grain"><label
+                                                for="checkbox20">Grain</label>
+                                            <input id="checkbox21" type="checkbox" value="wheat"><label
+                                                for="checkbox21">Wheat</label>
+                                            <input id="checkbox22" type="checkbox" value="seafood"><label
+                                                for="checkbox22">Seafood</label>
+                                            <input id="checkbox23" type="checkbox" value="shellfish"><label
+                                                for="checkbox23">Shellfish</label>
+                                            <input id="checkbox24" type="checkbox" value="sulfite"><label
+                                                for="checkbox24">Sulfite</label>
+
+
+                                            <!-- <input id="checkbox3" type="checkbox"><label for="checkbox3">Ketogenic</label>
+                                    <input id="checkbox3" type="checkbox"><label for="checkbox3">Gluten Free</label>
+                                    <input id="checkbox3" type="checkbox"><label for="checkbox3">Gluten Free</label> -->
+                                        </fieldset><br><br>
+                                        <label>How many recipes to search for?
+                                            <br><select id="selectRecipes3">
+                                                <option value="1">1</option>
+                                                <option selected value="5">5</option>
+                                                <option value="10">10</option>
+                                            </select>
+                                        </label>
+                                        <a class="button primary" id="submitButton3">Submit</a>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div id="attachHere3">
+
+
+            </div>
+
+
+        </div>
+        <!-- This is for the 4th tab, Saved Searches -->
+        <div class="tabs-panel" id="panel4c">
+            <h2>Saved Searches</h2>
+            <hr>
+            <ul id="savedRecipes">
+                <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+
+            </ul>
+
+        </div>
+
+
+    </div>
+
+
+
+
+
+
+
+
+    <!-- <div class="container" id="attachHere">
+        <div class="card" id="card1">
+            <div class="card-divider">
+                This is a header
+            </div>
+            <div class="card-section">
+                <h4>This is a card.</h4>
+                <p>It has an easy to override visual style, and is appropriately subdued.</p>
+            </div>
+        </div>
+    </div> -->
+    <!-- <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script> -->
+    <!-- test -->
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
+        integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function () {
+            $(document).foundation()
+        })
+    </script>
+
+
+    <!-- <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script> -->
+
+    <script src="./assets/js/nav.js"></script>
+    <script src="./assets/js/recipe.js"></script>
+</body>
+
+</html>

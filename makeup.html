@@ -6,8 +6,10 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Foundation Starter Template</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css" integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous"></link>
-    <link rel="stylesheet" href="./assets/css/makeup.css"></link>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/css/foundation.min.css"
+        integrity="sha256-ogmFxjqiTMnZhxCqVmcqTvjfe1Y/ec4WaRj/aQPvn+I=" crossorigin="anonymous">
+    </link>
+    <link rel="stylesheet" href="./assets/css/makeup.css">
     <link rel="stylesheet" href="./assets/css/nav.css">
 </head>
 
@@ -18,9 +20,9 @@
             <h4>The Nav</h4>
         </div>
         <ul class="navLinks">
-            <li class="li1"><a href="#">Food</a></li>
-            <li class="li1"><a href="#">Makeup</a></li>
-            <li class="li1"><a href="#">Beer</a></li>
+            <li class="li1"><a href="recipes.html">Recipes</a></li>
+            <li class="li1"><a href="food.html">Food Products</a></li>
+            <li class="li1"><a href="makeup.html">Makeup</a></li>
         </ul>
     </nav>
 
@@ -28,11 +30,15 @@
         <fieldset class="fieldset" id="makeupFilters">
             <legend>Investigate For</legend>
             <input id="checkbox1" type="checkbox" name="criteria" value="Vegan"><label for="checkbox1">Vegan</label>
-            <input id="checkbox2" type="checkbox" name="criteria" value="Gluten-Free"><label for="checkbox2">Gluten-Free</label>
-            <input id="checkbox3" type="checkbox" name="criteria" value="Hypoallergenic"><label for="checkbox3">Hypoallergenic</label>
-            <input id="checkbox4" type="checkbox" name="criteria" value="Cruelty-Free"><label for="checkbox4">Cruelty-Free</label>
+            <input id="checkbox2" type="checkbox" name="criteria" value="Gluten-Free"><label
+                for="checkbox2">Gluten-Free</label>
+            <input id="checkbox3" type="checkbox" name="criteria" value="Hypoallergenic"><label
+                for="checkbox3">Hypoallergenic</label>
+            <input id="checkbox4" type="checkbox" name="criteria" value="Cruelty-Free"><label
+                for="checkbox4">Cruelty-Free</label>
             <input id="checkbox5" type="checkbox" name="criteria" value="Organic"><label for="checkbox5">Organic</label>
-            <input id="checkbox6" type="checkbox" name="criteria" value="Fair-Trade"><label for="checkbox6">Fair Trade</label>
+            <input id="checkbox6" type="checkbox" name="criteria" value="Fair-Trade"><label for="checkbox6">Fair
+                Trade</label>
         </fieldset>
 
 
@@ -50,7 +56,7 @@
                             <option value="lipstick">Lipstick</option>
                             <option value="mascara">Mascara</option>
                             <option value="nailPolish">Nail Polish</option>
-                            <option value="">N/A</option>   
+                            <option value="">N/A</option>
                         </select>
                 </div>
                 <div class="cell medium-6">
@@ -85,15 +91,15 @@
                             <option value="revlon">Revlon</option>
                             <option value="wetnwild">Wet n Wild</option>
                         </select>
-                      </label>
+                    </label>
                 </div>
                 <label>How Many Results Would You Like to See?
                     <select id="selectResultQ">
                         <option value="5">5</option>
                         <option selected value="10">10</option>
                         <option value="15">15</option>
-                      </select>
-                    </label>
+                    </select>
+                </label>
                 <button type="button" id="searchBy">Search</button>
             </div>
         </div>
@@ -106,15 +112,18 @@
 
 
 
-    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js" integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
-    <script src="./assets/js/makeup.js"></script>
-    <script src="./assets/js/nav.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/foundation-sites@6.6.3/dist/js/foundation.min.js"
+        integrity="sha256-pRF3zifJRA9jXGv++b06qwtSqX1byFQOLjqa2PTEb2o=" crossorigin="anonymous"></script>
+
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $(document).foundation()
         })
     </script>
+    <script src="./assets/js/makeup.js"></script>
+    <script src="./assets/js/nav.js"></script>
 </body>
 
 </html>

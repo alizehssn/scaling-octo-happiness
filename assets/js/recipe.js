@@ -3,9 +3,13 @@
 //backup api    1db9120bf8854065b69f6e8dba48a42e;
 ///FIRST SEARCH   by ingredient
 //
-var apiKey = "&apiKey=0ba7a0fdd45c497a8afd81dae904a16c"
+var apiKey = "&apiKey=0ba7a0fdd45c497a8afd81dae904a16c";
+// backup var apiKey = "&apiKey=1db9120bf8854065b69f6e8dba48a42e";
+var recipeArray = [];
+var foodObjectItem = {};
+renderRecipes();
 
-$("#submitButton1").on("click", function(event) {
+$("#submitButton1").on("click", function (event) {
     event.preventDefault();
     let valueOfBar = $("#searchBar1").val().trim();
     if (valueOfBar === "") {
@@ -39,7 +43,7 @@ function searchByIngredients() {
     $.ajax({
         url: queryURL1,
         method: "GET"
-    }).then(function(response1) {
+    }).then(function (response1) {
         console.log(queryURL1);
         console.log(response1);
 
@@ -47,10 +51,9 @@ function searchByIngredients() {
             let responseItems = response1[i];
             let mainDiv1 = $("<div>").addClass("card mainCard1");
             let middleDiv1 = $("<div>").addClass("card-divider").html(responseItems.title);
-
             let imageEl1 = $("<img>").addClass("pictures1").attr("src", responseItems.image).attr("data-name", responseItems.id);
-
-            mainDiv1.append(middleDiv1, imageEl1);
+            let buttonEl = $("<button>").addClass("saveButton").attr("data-value", responseItems.id).text("❤️").attr("data-name", responseItems.title).attr("data-src", responseItems.image);
+            mainDiv1.append(middleDiv1, buttonEl, imageEl1);
 
             $("#attachHere1").append(mainDiv1);
         }
@@ -65,7 +68,7 @@ function searchByIngredients() {
 //
 //SECOND SEARCH BAR which is BY NUTRIENTS
 //
-$("#submitButton2").on("click", function(event) {
+$("#submitButton2").on("click", function (event) {
     event.preventDefault();
     searchByNutrients();
 })
@@ -202,17 +205,20 @@ function searchByNutrients() {
     $.ajax({
         url: queryURL2,
         method: "GET"
-    }).then(function(response2) {
+    }).then(function (response2) {
         console.log(queryURL2);
         console.log(response2);
 
         for (var v = 0; v < response2.length; v++) {
             let result2 = response2[v];
             let mainDivEl2 = $("<div>").addClass("mainDiv2");
-            let titleEl = $("<p>").text(result2.title);
-            let imageEl2 = $("<img>").attr("data-name", result2.id).attr("src", result2.image).attr("style", "width: 300px");
-            let pEl2 = $("<p>").html("Calories :" + result2.calories + " Carbs: ")
+            let titleEl = $("<h3>").text(result2.title);
+            let imageEl2 = $("<img>").addClass("pictures2").attr("data-name", result2.id).attr("src", result2.image).attr("style", "width: 300px");
+            let pEl2 = $("<p>").html("Calories: " + result2.calories + " Carbs: " + result2.carbs + " Fat: " + result2.fat + " Protein: " + result2.protein);
+            let buttonEl = $("<button>").addClass("saveButton").attr("data-value", result2.id).text("❤️").attr("data-name", result2.title).attr("data-src", result2.image);
 
+            mainDivEl2.append(titleEl, buttonEl, imageEl2, pEl2);
+            $("#attachHere2").append(mainDivEl2);
         }
 
 
@@ -229,7 +235,7 @@ function searchByNutrients() {
 //#3
 
 
-$("#submitButton3").on("click", function(event) {
+$("#submitButton3").on("click", function (event) {
     event.preventDefault();
     searchRandomly();
 })
@@ -242,32 +248,34 @@ function searchRandomly() {
     let params3 = [];
     let numberOfRecipes3 = $("#selectRecipes3").val()
     console.log(numberOfRecipes3);
-    $("#dietFilters").children("input").each(function() {
+    $("#dietFilters").children("input").each(function () {
         if ($(this).prop("checked") === true) {
             params.push($(this).val());
         }
     })
-    if (params.length >= 1) {
-        queryURL3 += "&tags=" + params.join(",");
-    }
 
-    // $("#mealFilters").children("input").each(function() {
-    //     if ($(this).prop("checked") === true) {
-    //         params2.push($(this).val());
-    //     }
-    // })
+    $("#mealFilters").children("input").each(function () {
+        if ($(this).prop("checked") === true) {
+            params.push($(this).val());
+        }
+    })
     // if (params2.length >= 1) {
     //     queryURL3 += "&tags=" + params2.join(",");
     // }
 
-    $("#intoleranceFilters").children("input").each(function() {
+    if (params.length >= 1) {
+        queryURL3 += "&tags=" + params.join(",");
+    }
+
+
+    $("#intoleranceFilters").children("input").each(function () {
         if ($(this).prop("checked") === true) {
             params3.push($(this).val());
         }
     })
 
     if (params3.length >= 1) {
-        queryURL3 += "&tags=" + params3.join(",");
+        queryURL3 += "&intolerances=" + params3.join(",");
     }
     if (numberOfRecipes3) {
         queryURL3 += "&number=" + numberOfRecipes3;
@@ -277,7 +285,7 @@ function searchRandomly() {
     $.ajax({
         url: queryURL3,
         method: "GET"
-    }).then(function(response3) {
+    }).then(function (response3) {
         console.log(queryURL3);
         console.log(response3);
 
@@ -287,20 +295,196 @@ function searchRandomly() {
             let mainDiv3 = $("<div>").addClass("mainDiv3");
             let title3 = $("<h3>").text(recipe.title);
             let imageEl3 = $("<img>").attr("src", recipe.image).attr("style", "width: 300px").attr("data-name", recipe.id);
+            let badgesDiv = $("<div>");
             let about3 = $("<div>").html(recipe.summary);
-            let recipeDivEl3 = $("<div>").html("Ingredients: ");
+            let recipeDivEl3 = $("<div>").html($("<h4>").text("Ingredients: "));
+            let websiteEl = $("<a>").attr("href", recipe.sourceUrl).attr("target", "_blank").text("Click Here for Full Recipe").add($("<hr>"));
+            let buttonEl = $("<button>").addClass("saveButton").attr("data-value", recipe.id).text("❤️").attr("data-name", recipe.title).attr("data-src", recipe.image);
+
+            if (recipe.vegan === true) {
+                let badgesImg = $("<img>").attr("src", "./assets/images/vegan.jpg").attr("style", "width: 100px").attr("style", "height: 100px");
+                badgesDiv.append(badgesImg);
+            }
+            if (recipe.vegetarian === true) {
+                let badgesImg = $("<img>").attr("src", "./assets/images/vegetarian.jpg").attr("style", "width: 100px").attr("style", "height: 100px");
+                badgesDiv.append(badgesImg);
+            }
+            if (recipe.glutenFree === true) {
+                let badgesImg = $("<img>").attr("src", "./assets/images/glutenFree.jpg").attr("style", "width: 100px").attr("style", "height: 100px");
+                badgesDiv.append(badgesImg);
+            }
+            if (recipe.dairyFree === true) {
+                let badgesImg = $("<img>").attr("src", "./assets/images/dairyFree.jpg").attr("style", "width: 100px").attr("style", "height: 100px");
+                badgesDiv.append(badgesImg);
+            }
+            if (recipe.veryHealthy === true) {
+                let badgesImg = $("<img>").attr("src", "./assets/images/healthy.jpg").attr("style", "width: 100px").attr("style", "height: 100px");
+                badgesDiv.append(badgesImg);
+            }
+
 
             for (var y = 0; y < recipe.extendedIngredients.length; y++) {
                 let smallDivPicture = $("<div>").addClass("smallImages");
-                let ingredientsImg3 = $("<p>").text(recipe.extendedIngredients[y].amount + recipe.extendedIngredients[y].unit).add($("<img>").attr("src", "https://spoonacular.com/cdn/ingredients_100x100/" + recipe.extendedIngredients[y].image));
+                let ingredientsImg3 = $("<p>").text(recipe.extendedIngredients[y].amount.toFixed(2) + " " + recipe.extendedIngredients[y].unit).add($("<img>").attr("src", "https://spoonacular.com/cdn/ingredients_100x100/" + recipe.extendedIngredients[y].image)).add($("<p>").text(recipe.extendedIngredients[y].name));
                 smallDivPicture.html(ingredientsImg3);
                 recipeDivEl3.append(smallDivPicture);
             }
 
-            mainDiv3.append(title3, imageEl3, about3, recipeDivEl3);
+            mainDiv3.append(title3, buttonEl, imageEl3, badgesDiv, about3, recipeDivEl3, websiteEl);
 
             $("#attachHere3").append(mainDiv3);
         }
 
     })
 }
+
+//This is for saving the recipes in Local Storage
+
+$(document).on("click", ".saveButton", function (event) {
+    event.preventDefault();
+
+    let ulName = $(this).attr("data-name");
+    let ulId = $(this).attr("data-value");
+    let ulImage = $(this).attr("data-src");
+
+    foodObjectItem = {
+        name: ulName,
+        id: ulId,
+        image: ulImage
+    };
+
+    recipeArray.unshift(foodObjectItem);
+    localStorage.setItem("Recipes", JSON.stringify(recipeArray));
+
+    renderRecipes();
+})
+
+// Renders all the saved recipes from Local Storage
+function renderRecipes() {
+    recipeArray = JSON.parse(localStorage.getItem("Recipes")) || [];
+
+    if (recipeArray && recipeArray.length >= 1) {
+        $("#savedRecipes").empty();
+        for (var a = 0; a < recipeArray.length; a++) {
+            let listItemDiv = $("<div>").addClass("listItems");
+            let newListItem = $("<li>").addClass("foodListItem list-group-item").text(recipeArray[a].name).attr("data-value", recipeArray[a].id).attr("data-number", [a]);
+            let listItemImage = $("<img>").attr("src", recipeArray[a].image).attr("style", "width: 400px");
+            let priceButton = $("<button>").text("Remove Recipe").addClass("priceButton button success").add($("<hr><br>"));
+            let lineSpacing = $("<br>");
+            let nutritionButton = $("<button>").text("Recipe Instructions").addClass("nutritionButton button");
+            let equiptmentButton = $("<button>").text("Equiptment Needed").addClass("equipButton button warning");
+            let emptyDiv = $("<div>").addClass("forEquip" + [a]);
+            listItemDiv.html(newListItem).append(listItemDiv, listItemImage, lineSpacing, nutritionButton, equiptmentButton, priceButton, emptyDiv);
+            $("#savedRecipes").append(listItemDiv);
+
+        }
+    } else {
+        return;
+    }
+}
+
+// Click event for price breakdown
+
+$(document).on("click", ".priceButton", function (event) {
+    event.preventDefault();
+
+    let dataId = $(this).siblings("li.foodListItem").attr("data-value");
+    let listItem = $(this).parent();
+    listItem.empty();
+
+    recipeArray = JSON.parse(localStorage.getItem("Recipes")) || [];
+
+    const filteredRecipes = recipeArray.filter(function (recipes) {
+
+        return recipes.id != dataId;
+    })
+
+    localStorage.setItem("Recipes", JSON.stringify(filteredRecipes));
+
+})
+
+$(document).on("click", ".nutritionButton", function (event) {
+    event.preventDefault();
+
+    let priceId = $(this).siblings().attr("data-value").toString();
+    let nutritionUrl = "https://api.spoonacular.com/recipes/" + priceId + "/analyzedInstructions?" + apiKey;
+    let positionAt = $(this).siblings().attr("data-number");
+
+
+    $.ajax({
+        url: nutritionUrl,
+        method: "GET"
+    }).then(function (nutResponse) {
+        console.log(nutResponse);
+        $(".forEquip" + positionAt).empty();
+
+        for (var c = 0; c < nutResponse[0].steps.length; c++) {
+            let steps = nutResponse[0].steps[c];
+
+            let mainDiv = $("<div>").addClass("mainDiv1");
+            let mainDiv2 = $("<div>").addClass("mainDiv1");
+            let stepNumber = $("<h5>").text("Step " + steps.number).add($("<hr>"));
+            let stepsInstruction = $("<div>").add($("<h6>").html(steps.step));
+            let equipDiv = $("<div>").addClass("equip1");
+            let ingredDiv = $("<div>").addClass("ingred1");
+            mainDiv.append(stepNumber, stepsInstruction, mainDiv2);
+
+            for (d = 0; d < steps.equipment.length; d++) {
+                let stepsEquip = steps.equipment[d];
+                let testDiv = $("<div>").addClass("tester");
+                let equipImg = $("<img>").attr("src", "https://spoonacular.com/cdn/equipment_100x100/" + stepsEquip.image).addClass("test").add($("<p>").addClass("pClass").text(stepsEquip.name));
+                testDiv.html(equipImg);
+
+                mainDiv.append(testDiv);
+                $(".forEquip" + positionAt).append(mainDiv);
+            }
+
+            for (var e = 0; e < steps.ingredients.length; e++) {
+                let stepsIngrd = steps.ingredients[e];
+
+
+                let testDiv2 = $("<div>").addClass("tester");
+                let ingredImg = $("<img>").attr("src", "https://spoonacular.com/cdn/ingredients_100x100/" + stepsIngrd.image).addClass("test").add($("<p>").addClass("pClass").text(stepsIngrd.name));
+
+                testDiv2.html(ingredImg);
+                mainDiv.append(testDiv2);
+                $(".forEquip" + positionAt).append(mainDiv2);
+
+            }
+
+
+
+            // mainDiv.append(equipDiv);
+
+        }
+    })
+})
+
+$(document).on("click", ".equipButton", function (event) {
+    event.preventDefault();
+
+    let equipId = $(this).siblings().attr("data-value").toString();
+    let equipUrl = "https://api.spoonacular.com/recipes/" + equipId + "/equipmentWidget.json?" + apiKey;
+    let positionAt = $(this).siblings().attr("data-number");
+    $(".forEquip" + positionAt).empty();
+
+
+    $.ajax({
+        url: equipUrl,
+        method: "GET"
+    }).then(function (equipResult) {
+        console.log(equipResult);
+
+        for (var b = 0; b < equipResult.equipment.length; b++) {
+            let eResults = equipResult.equipment[b];
+            let equipDiv = $("<div>").addClass("equipDiv");
+            var equipImg = $("<img>").addClass("smallEquip").attr("src", "https://spoonacular.com/cdn/equipment_100x100/" + eResults.image).add($("<p>").addClass("forEquip").text(eResults.name));
+            equipDiv.html(equipImg);
+            $(".forEquip" + positionAt).append(equipDiv);
+
+        }
+
+    })
+
+
+})
