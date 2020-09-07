@@ -4,11 +4,12 @@
 ///FIRST SEARCH   by ingredient
 //
 var apiKey = "&apiKey=0ba7a0fdd45c497a8afd81dae904a16c";
+// backup var apiKey = "&apiKey=1db9120bf8854065b69f6e8dba48a42e";
 var recipeArray = [];
 var foodObjectItem = {};
 renderRecipes();
 
-$("#submitButton1").on("click", function(event) {
+$("#submitButton1").on("click", function (event) {
     event.preventDefault();
     let valueOfBar = $("#searchBar1").val().trim();
     if (valueOfBar === "") {
@@ -42,7 +43,7 @@ function searchByIngredients() {
     $.ajax({
         url: queryURL1,
         method: "GET"
-    }).then(function(response1) {
+    }).then(function (response1) {
         console.log(queryURL1);
         console.log(response1);
 
@@ -51,7 +52,7 @@ function searchByIngredients() {
             let mainDiv1 = $("<div>").addClass("card mainCard1");
             let middleDiv1 = $("<div>").addClass("card-divider").html(responseItems.title);
             let imageEl1 = $("<img>").addClass("pictures1").attr("src", responseItems.image).attr("data-name", responseItems.id);
-            let buttonEl = $("<button>").addClass("saveButton").attr("data-value", responseItems.id).text("save").attr("data-name", responseItems.title).attr("data-src", responseItems.image);
+            let buttonEl = $("<button>").addClass("saveButton").attr("data-value", responseItems.id).text("❤️").attr("data-name", responseItems.title).attr("data-src", responseItems.image);
             mainDiv1.append(middleDiv1, buttonEl, imageEl1);
 
             $("#attachHere1").append(mainDiv1);
@@ -67,7 +68,7 @@ function searchByIngredients() {
 //
 //SECOND SEARCH BAR which is BY NUTRIENTS
 //
-$("#submitButton2").on("click", function(event) {
+$("#submitButton2").on("click", function (event) {
     event.preventDefault();
     searchByNutrients();
 })
@@ -204,7 +205,7 @@ function searchByNutrients() {
     $.ajax({
         url: queryURL2,
         method: "GET"
-    }).then(function(response2) {
+    }).then(function (response2) {
         console.log(queryURL2);
         console.log(response2);
 
@@ -214,7 +215,7 @@ function searchByNutrients() {
             let titleEl = $("<h3>").text(result2.title);
             let imageEl2 = $("<img>").addClass("pictures2").attr("data-name", result2.id).attr("src", result2.image).attr("style", "width: 300px");
             let pEl2 = $("<p>").html("Calories: " + result2.calories + " Carbs: " + result2.carbs + " Fat: " + result2.fat + " Protein: " + result2.protein);
-            let buttonEl = $("<button>").addClass("saveButton").attr("data-value", result2.id).text("save").attr("data-name", result2.title).attr("data-src", result2.image);
+            let buttonEl = $("<button>").addClass("saveButton").attr("data-value", result2.id).text("❤️").attr("data-name", result2.title).attr("data-src", result2.image);
 
             mainDivEl2.append(titleEl, buttonEl, imageEl2, pEl2);
             $("#attachHere2").append(mainDivEl2);
@@ -234,7 +235,7 @@ function searchByNutrients() {
 //#3
 
 
-$("#submitButton3").on("click", function(event) {
+$("#submitButton3").on("click", function (event) {
     event.preventDefault();
     searchRandomly();
 })
@@ -247,25 +248,27 @@ function searchRandomly() {
     let params3 = [];
     let numberOfRecipes3 = $("#selectRecipes3").val()
     console.log(numberOfRecipes3);
-    $("#dietFilters").children("input").each(function() {
+    $("#dietFilters").children("input").each(function () {
         if ($(this).prop("checked") === true) {
             params.push($(this).val());
         }
     })
-    if (params.length >= 1) {
-        queryURL3 += "&tags=" + params.join(",");
-    }
 
-    // $("#mealFilters").children("input").each(function() {
-    //     if ($(this).prop("checked") === true) {
-    //         params2.push($(this).val());
-    //     }
-    // })
+    $("#mealFilters").children("input").each(function () {
+        if ($(this).prop("checked") === true) {
+            params.push($(this).val());
+        }
+    })
     // if (params2.length >= 1) {
     //     queryURL3 += "&tags=" + params2.join(",");
     // }
 
-    $("#intoleranceFilters").children("input").each(function() {
+    if (params.length >= 1) {
+        queryURL3 += "&tags=" + params.join(",");
+    }
+
+
+    $("#intoleranceFilters").children("input").each(function () {
         if ($(this).prop("checked") === true) {
             params3.push($(this).val());
         }
@@ -282,7 +285,7 @@ function searchRandomly() {
     $.ajax({
         url: queryURL3,
         method: "GET"
-    }).then(function(response3) {
+    }).then(function (response3) {
         console.log(queryURL3);
         console.log(response3);
 
@@ -292,10 +295,33 @@ function searchRandomly() {
             let mainDiv3 = $("<div>").addClass("mainDiv3");
             let title3 = $("<h3>").text(recipe.title);
             let imageEl3 = $("<img>").attr("src", recipe.image).attr("style", "width: 300px").attr("data-name", recipe.id);
+            let badgesDiv = $("<div>");
             let about3 = $("<div>").html(recipe.summary);
             let recipeDivEl3 = $("<div>").html($("<h4>").text("Ingredients: "));
-            let websiteEl = $("<a>").attr("href", recipe.sourceUrl).attr("target", "_blank").text("Click Here for Full Recipe");
-            let buttonEl = $("<button>").addClass("saveButton").attr("data-value", recipe.id).text("save").attr("data-name", recipe.title).attr("data-src", recipe.image);
+            let websiteEl = $("<a>").attr("href", recipe.sourceUrl).attr("target", "_blank").text("Click Here for Full Recipe").add($("<hr>"));
+            let buttonEl = $("<button>").addClass("saveButton").attr("data-value", recipe.id).text("❤️").attr("data-name", recipe.title).attr("data-src", recipe.image);
+
+            if (recipe.vegan === true) {
+                let badgesImg = $("<img>").attr("src", "./assets/images/vegan.jpg").attr("style", "width: 100px").attr("style", "height: 100px");
+                badgesDiv.append(badgesImg);
+            }
+            if (recipe.vegetarian === true) {
+                let badgesImg = $("<img>").attr("src", "./assets/images/vegetarian.jpg").attr("style", "width: 100px").attr("style", "height: 100px");
+                badgesDiv.append(badgesImg);
+            }
+            if (recipe.glutenFree === true) {
+                let badgesImg = $("<img>").attr("src", "./assets/images/glutenFree.jpg").attr("style", "width: 100px").attr("style", "height: 100px");
+                badgesDiv.append(badgesImg);
+            }
+            if (recipe.dairyFree === true) {
+                let badgesImg = $("<img>").attr("src", "./assets/images/dairyFree.jpg").attr("style", "width: 100px").attr("style", "height: 100px");
+                badgesDiv.append(badgesImg);
+            }
+            if (recipe.veryHealthy === true) {
+                let badgesImg = $("<img>").attr("src", "./assets/images/healthy.jpg").attr("style", "width: 100px").attr("style", "height: 100px");
+                badgesDiv.append(badgesImg);
+            }
+
 
             for (var y = 0; y < recipe.extendedIngredients.length; y++) {
                 let smallDivPicture = $("<div>").addClass("smallImages");
@@ -304,7 +330,7 @@ function searchRandomly() {
                 recipeDivEl3.append(smallDivPicture);
             }
 
-            mainDiv3.append(title3, buttonEl, imageEl3, about3, recipeDivEl3, websiteEl);
+            mainDiv3.append(title3, buttonEl, imageEl3, badgesDiv, about3, recipeDivEl3, websiteEl);
 
             $("#attachHere3").append(mainDiv3);
         }
@@ -314,7 +340,7 @@ function searchRandomly() {
 
 //This is for saving the recipes in Local Storage
 
-$(document).on("click", ".saveButton", function(event) {
+$(document).on("click", ".saveButton", function (event) {
     event.preventDefault();
 
     let ulName = $(this).attr("data-name");
@@ -343,12 +369,12 @@ function renderRecipes() {
             let listItemDiv = $("<div>").addClass("listItems");
             let newListItem = $("<li>").addClass("foodListItem list-group-item").text(recipeArray[a].name).attr("data-value", recipeArray[a].id).attr("data-number", [a]);
             let listItemImage = $("<img>").attr("src", recipeArray[a].image).attr("style", "width: 400px");
-            let priceButton = $("<button>").text("Price Breakdown").addClass("priceButton button success");
+            let priceButton = $("<button>").text("Remove Recipe").addClass("priceButton button success").add($("<hr><br>"));
             let lineSpacing = $("<br>");
-            let nutritionButton = $("<button>").text("Nutrition Breakdown").addClass("nutritionButton button");
-            let equiptmentButton = $("<button>").text("Equiptment Needed").addClass("equipButton button warning")
+            let nutritionButton = $("<button>").text("Recipe Instructions").addClass("nutritionButton button");
+            let equiptmentButton = $("<button>").text("Equiptment Needed").addClass("equipButton button warning");
             let emptyDiv = $("<div>").addClass("forEquip" + [a]);
-            listItemDiv.html(newListItem).append(listItemDiv, listItemImage, lineSpacing, priceButton, nutritionButton, equiptmentButton, emptyDiv);
+            listItemDiv.html(newListItem).append(listItemDiv, listItemImage, lineSpacing, nutritionButton, equiptmentButton, priceButton, emptyDiv);
             $("#savedRecipes").append(listItemDiv);
         }
     } else {
@@ -358,33 +384,25 @@ function renderRecipes() {
 
 // Click event for price breakdown
 
-$(document).on("click", ".priceButton", function(event) {
-    $("#chartContainer").empty();
+$(document).on("click", ".priceButton", function (event) {
     event.preventDefault();
 
-    let recipeId = $(this).siblings().attr("data-value").toString();
-    let priceURL = "https://api.spoonacular.com/recipes/" + recipeId + "/priceBreakdownWidget?" + apiKey;
+    let dataId = $(this).siblings("li.foodListItem").attr("data-value");
+    let listItem = $(this).parent();
+    listItem.empty();
 
+    recipeArray = JSON.parse(localStorage.getItem("Recipes")) || [];
 
-    $.ajax({
-        url: priceURL,
-        method: "GET"
-    }).then(function(priceResult) {
-        console.log(priceResult);
+    const filteredRecipes = recipeArray.filter(function (recipes) {
 
-
-
-        // let parsed = JSON.parse(priceResult);
-        // console.log(parsed);
-        // let priceImage = $("<img>").attr("src", priceResult);
-
-        // $("#priceBreakdown").append(priceResult);
-
+        return recipes.id != dataId;
     })
+
+    localStorage.setItem("Recipes", JSON.stringify(filteredRecipes));
 
 })
 
-$(document).on("click", ".nutritionButton", function(event) {
+$(document).on("click", ".nutritionButton", function (event) {
     event.preventDefault();
 
     let priceId = $(this).siblings().attr("data-value").toString();
@@ -395,29 +413,53 @@ $(document).on("click", ".nutritionButton", function(event) {
     $.ajax({
         url: nutritionUrl,
         method: "GET"
-    }).then(function(nutResponse) {
+    }).then(function (nutResponse) {
         console.log(nutResponse);
+        $(".forEquip" + positionAt).empty();
 
         for (var c = 0; c < nutResponse[0].steps.length; c++) {
             let steps = nutResponse[0].steps[c];
 
             let mainDiv = $("<div>").addClass("mainDiv1");
-            let stepNumber = $("<h5>").text("Step " + steps.number);
+            let mainDiv2 = $("<div>").addClass("mainDiv1");
+            let stepNumber = $("<h5>").text("Step " + steps.number).add($("<hr>"));
+            let stepsInstruction = $("<div>").add($("<h6>").html(steps.step));
             let equipDiv = $("<div>").addClass("equip1");
+            let ingredDiv = $("<div>").addClass("ingred1");
+            mainDiv.append(stepNumber, stepsInstruction, mainDiv2);
 
             for (d = 0; d < steps.equipment.length; d++) {
                 let stepsEquip = steps.equipment[d];
+                let testDiv = $("<div>").addClass("tester");
+                let equipImg = $("<img>").attr("src", "https://spoonacular.com/cdn/equipment_100x100/" + stepsEquip.image).addClass("test").add($("<p>").addClass("pClass").text(stepsEquip.name));
+                testDiv.html(equipImg);
 
-                let equipImg = $("<img>").attr("src", "https://spoonacular.com/cdn/equipment_100x100/" + stepsEquip.image);
-                equipDiv.append(equipImg);
+                mainDiv.append(testDiv);
+                $(".forEquip" + positionAt).append(mainDiv);
             }
 
-            $(".forEquip" + positionAt).append(mainDiv, stepNumber, equipDiv);
+            for (var e = 0; e < steps.ingredients.length; e++) {
+                let stepsIngrd = steps.ingredients[e];
+
+
+                let testDiv2 = $("<div>").addClass("tester");
+                let ingredImg = $("<img>").attr("src", "https://spoonacular.com/cdn/ingredients_100x100/" + stepsIngrd.image).addClass("test").add($("<p>").addClass("pClass").text(stepsIngrd.name));
+
+                testDiv2.html(ingredImg);
+                mainDiv.append(testDiv2);
+                $(".forEquip" + positionAt).append(mainDiv2);
+
+            }
+
+
+
+            // mainDiv.append(equipDiv);
+
         }
     })
 })
 
-$(document).on("click", ".equipButton", function(event) {
+$(document).on("click", ".equipButton", function (event) {
     event.preventDefault();
 
     let equipId = $(this).siblings().attr("data-value").toString();
@@ -429,17 +471,16 @@ $(document).on("click", ".equipButton", function(event) {
     $.ajax({
         url: equipUrl,
         method: "GET"
-    }).then(function(equipResult) {
+    }).then(function (equipResult) {
         console.log(equipResult);
 
         for (var b = 0; b < equipResult.equipment.length; b++) {
-            console.log(equipResult.equipment.length);
             let eResults = equipResult.equipment[b];
             let equipDiv = $("<div>").addClass("equipDiv");
             var equipImg = $("<img>").addClass("smallEquip").attr("src", "https://spoonacular.com/cdn/equipment_100x100/" + eResults.image).add($("<p>").addClass("forEquip").text(eResults.name));
             equipDiv.html(equipImg);
             $(".forEquip" + positionAt).append(equipDiv);
-            console.log("number", [b])
+
         }
 
     })
