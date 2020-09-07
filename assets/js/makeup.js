@@ -72,11 +72,11 @@ function searchMakeup() {
             $("#resultsContainer").append(divEl)
         }
         for (var i = 0; i < response.length; i++) {
-            let brand = $("<h1>").text(response[i].brand);
+            let brand = $("<h1>").html(response[i].name);
             let img = $("<img>").attr("src", response[i].image_link).attr("style", "width: 300px");
             let prod = $("<h2>").text(response[i].product_type);
             let cat = $("<p>").text(response[i].category);
-            let link = $("<p>").text(response[i].product_link);
+            let link = $("<a>").attr("href", response[i].product_link).text("Buy Here!");
             let matchedTags = $("<p>").text(response[i].tag_list);
 
 

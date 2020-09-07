@@ -1,3 +1,18 @@
 body {
-    background-color: palevioletred;
+    background-image: url("https://images.pexels.com/photos/1831234/pexels-photo-1831234.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
 }
+
+.work-feature-block {
+    padding: 10px 0;
+    border: 1px solid peachpuff;
+    box-sizing: border-box;
+}
+
+.work-feature-block-image {
+    display: block;
+    margin: auto;
+    padding: 10px 0;
+    float: left;
+}
+
+h1 {}
