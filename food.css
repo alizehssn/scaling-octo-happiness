@@ -8,16 +8,19 @@
 }
 
 .divItem {
-    display: inline-block;
-    width: 20%;
+    flex-flow: row wrap;
+    width: 300px;
     margin: 1%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .call2Main {
     text-align: center;
     display: inline-block;
-    width: 80%;
-    margin-left: 30%;
+    width: 90%;
+    margin: 0 auto;
+    margin-left: 5%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .call2Heading {
@@ -28,7 +31,9 @@
     text-align: center;
     display: inline-block;
     width: 90%;
+    margin: 0 auto;
     margin-left: 5%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .call2Ingredients {
@@ -37,19 +42,25 @@
     width: 90%;
     margin: 0 auto;
     margin-left: 5%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .button {
     border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .search-bar {
     padding: 10px;
     margin: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    border-radius: 10px;
+    background-color: rgb(146, 208, 146)
 }
 
 #searchBar {
     border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .divItem:hover .picture {
@@ -69,4 +80,25 @@ backface-visibility: hidden;
     float: center;
     padding: 20px;
     word-wrap: normal;
+    align-items: stretch;
+}
+
+.initialResults {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 10px;
+    
+}
+
+.productSelection, .searchForFood {
+    color: dark rgb(46, 46, 46);
+}
+
+.productSelection, .productResults {
+    margin-left: 10px;
+}
+
+.titleInitial {
+    width: 100%;
 }

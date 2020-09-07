@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="food.css">
 </head>
 
-<body style="background-color: whitesmoke">
+<body style="background-color: rgb(237, 217, 139)">
     <!-- <div class="title-bar flex-container" data-responsive-toggle="responsive-menu" data-hide-for="medium">
         <button class="menu-icon" type="button" data-toggle="responsive-menu"></button>
         <div class="title-bar-title">Menu</div>
@@ -31,7 +31,7 @@
       <div class="grid-container search-bar">
         <div class="grid-x grid-padding-x">
             <div class="medium-6 cell">
-              <h4>Search for a Food Product below:</h4>
+              <h4 class="searchForFood">Search for a Food Product:</h4>
               <input type="text" placeholder="(i.e. Doritos, Snickers, Digiorno, etc.)" id="searchBar"></input>
               <a class="button primary" id="submitButton">Search</a>
             </div>
@@ -43,7 +43,7 @@
     <div class="row flex-child-auto foodResults" id="attachInfoHere"></div>
     <h4 class="row col-12 productResults"></h4>
     <!--Inital product search results (after typing an initial search)-->
-    <div class="row flex-container" id="attachHere"></div>
+    <div class="flex-container initialResults" id="attachHere"></div>
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>

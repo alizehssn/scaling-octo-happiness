@@ -29,7 +29,6 @@ $("#submitButton").on("click", function(event) {
     itemToSearch = $("#searchBar").val().trim().toLowerCase();
 
     searchItemCall(itemToSearch);
-
 })
 
 $(document).on("click", ".picture", clickedImage);
@@ -43,9 +42,6 @@ function clickedImage(event) {
 
 function searchItemCall() {
     $("#attachHere").empty();
-
-    // Variable to store product search Query
-
 
     // Settings for AJAX call to get productID based on product search query
     var settings = {
@@ -70,7 +66,7 @@ function searchItemCall() {
         for (var i = 0; i < response.products.length; i++) {
             var topDiv = $("<div>").addClass("card divItem");
                 topDiv.css({"border-radius": "10px"},{"word-wrap": "inherit"})
-            var secondDiv = $("<div>").addClass("card-divider");
+            var secondDiv = $("<div>").addClass("card-divider titleInitial");
                 secondDiv.text(response.products[i].title);
                 secondDiv.css({"border-radius-top": "10px"},{"word-wrap": "inherit"})
             var imageEl = $("<img>").css({"padding": "5px"});
@@ -81,14 +77,9 @@ function searchItemCall() {
             imageEl.addClass("picture");
             topDiv.append(secondDiv, imageEl);
             $("#attachHere").append(topDiv);
-
         }
-
     });
-
-
 }
-
 
 function secondCall(picId) {
     var moreSettings = {
@@ -147,6 +138,5 @@ function secondCall(picId) {
 
         // Appending elements dynamically to html display
         $("#attachInfoHere").append(div1, badgesDiv, div11);
-
     });
 }
