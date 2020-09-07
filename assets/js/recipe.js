@@ -376,6 +376,7 @@ function renderRecipes() {
             let emptyDiv = $("<div>").addClass("forEquip" + [a]);
             listItemDiv.html(newListItem).append(listItemDiv, listItemImage, lineSpacing, nutritionButton, equiptmentButton, priceButton, emptyDiv);
             $("#savedRecipes").append(listItemDiv);
+
         }
     } else {
         return;
