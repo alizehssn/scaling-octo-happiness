@@ -1,39 +1,49 @@
-* {
+/* {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-}
+    color: rgb(41, 41, 41);
+} */
 
 nav {
+    color: rgb(41, 41, 41);
     display: flex;
     justify-content: space-around;
     align-items: center;
     min-height: 8vh;
-    background-color: green;
+    background-color: whitesmoke;
 }
 
 .logo {
-    color: white;
+    color: rgb(41, 41, 41);
     letter-spacing: 3px;
     font-size: 20px;
 }
 
 .navLinks {
+    align-items: center;
     display: flex;
     justify-content: space-around;
     width: 35%;
+    color: rgb(41, 41, 41);
+    margin: 10px;
+    padding: 10px;
 }
 
 .navLinks li {
     list-style: none;
+    color: rgb(41, 41, 41);
 }
 
 .burger {
+    background-color: rgb(41, 41, 41);
+    border-radius: 5px;
+    color: rgb(41, 41, 41);
     display: none;
 }
 
 .navLinks a {
-    color: white;
+    color: rgb(41, 41, 41);
     text-decoration: none;
     letter-spacing: 3px;
     font-weight: bold;
@@ -52,11 +62,12 @@ nav {
         overflow-x: hidden;
     }
     .navLinks {
+        color: rgb(41, 41, 41);
         position: absolute;
         right: 0px;
         height: 90vh;
         top: 8vh;
-        background-color: green;
+        background-color: whitesmoke;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -65,15 +76,18 @@ nav {
         transition: transform 0.5s ease-in;
     }
     .navLinks li {
+        color: rgb(41, 41, 41);
         opacity: 0;
     }
     .burger {
+        color: rgb(41, 41, 41);
         display: block;
         cursor: pointer;
     }
 }
 
 .nav-active {
+    color: rgb(108, 108, 226);
     transform: translate(0%);
 }
 
