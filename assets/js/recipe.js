@@ -421,6 +421,7 @@ $(document).on("click", ".nutritionButton", function(event) {
             let steps = nutResponse[0].steps[c];
 
             let mainDiv = $("<div>").addClass("mainDiv1");
+<<<<<<< HEAD
             let mainDiv2 = $("<div>").addClass("mainDiv1");
             let stepNumber = $("<h5>").text("Step " + steps.number).add($("<hr>"));
             let stepsInstruction = $("<div>").add($("<h6>").html(steps.step));
@@ -455,6 +456,19 @@ $(document).on("click", ".nutritionButton", function(event) {
 
             // mainDiv.append(equipDiv);
 
+=======
+            let stepNumber = $("<h5>").text("Step " + steps.number);
+            let equipDiv = $("<div>").addClass("equip1");
+
+            for (d = 0; d < steps.equipment.length; d++) {
+                let stepsEquip = steps.equipment[d];
+
+                let equipImg = $("<img>").attr("src", "https://spoonacular.com/cdn/equipment_100x100/" + stepsEquip.image);
+                equipDiv.append(equipImg);
+            }
+
+            $(".forEquip" + positionAt).append(mainDiv, stepNumber, equipDiv);
+>>>>>>> parent of da73da5... pushing up changes
         }
     })
 })
