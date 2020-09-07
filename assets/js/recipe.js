@@ -422,6 +422,7 @@ $(document).on("click", ".nutritionButton", function(event) {
 
             let mainDiv = $("<div>").addClass("mainDiv1");
 <<<<<<< HEAD
+<<<<<<< HEAD
             let mainDiv2 = $("<div>").addClass("mainDiv1");
             let stepNumber = $("<h5>").text("Step " + steps.number).add($("<hr>"));
             let stepsInstruction = $("<div>").add($("<h6>").html(steps.step));
@@ -462,12 +463,22 @@ $(document).on("click", ".nutritionButton", function(event) {
 
             for (d = 0; d < steps.equipment.length; d++) {
                 let stepsEquip = steps.equipment[d];
+=======
+            let stepNumber = $("<h5>").text("Step " + steps.number);
+            let equipDiv = $("<div>").addClass("equip1");
+
+            for (d = 0; d < steps.equipment.length; d++) {
+                let stepsEquip = steps.equipment[d];
+>>>>>>> parent of da73da5... pushing up changes
 
                 let equipImg = $("<img>").attr("src", "https://spoonacular.com/cdn/equipment_100x100/" + stepsEquip.image);
                 equipDiv.append(equipImg);
             }
 
             $(".forEquip" + positionAt).append(mainDiv, stepNumber, equipDiv);
+<<<<<<< HEAD
+>>>>>>> parent of da73da5... pushing up changes
+=======
 >>>>>>> parent of da73da5... pushing up changes
         }
     })
