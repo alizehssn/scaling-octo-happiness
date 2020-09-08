@@ -212,7 +212,7 @@ function searchByNutrients() {
         for (var v = 0; v < response2.length; v++) {
             let result2 = response2[v];
             let mainDivEl2 = $("<div>").addClass("mainDiv2");
-            let titleEl = $("<h3>").text(result2.title);
+            let titleEl = $("<h4>").text(result2.title);
             let imageEl2 = $("<img>").addClass("pictures2").attr("data-name", result2.id).attr("src", result2.image).attr("style", "width: 300px");
             let pEl2 = $("<p>").html("Calories: " + result2.calories + " Carbs: " + result2.carbs + " Fat: " + result2.fat + " Protein: " + result2.protein);
             let buttonEl = $("<button>").addClass("saveButton").attr("data-value", result2.id).text("❤️").attr("data-name", result2.title).attr("data-src", result2.image);
@@ -297,7 +297,7 @@ function searchRandomly() {
             let imageEl3 = $("<img>").attr("src", recipe.image).attr("style", "width: 300px").attr("data-name", recipe.id);
             let badgesDiv = $("<div>");
             let about3 = $("<div>").html(recipe.summary);
-            let recipeDivEl3 = $("<div>").html($("<h4>").text("Ingredients: "));
+            let recipeDivEl3 = $("<div>").addClass("recipeIngred").html($("<h4>").text("Ingredients: "));
             let websiteEl = $("<a>").attr("href", recipe.sourceUrl).attr("target", "_blank").text("Click Here for Full Recipe").add($("<hr>"));
             let buttonEl = $("<button>").addClass("saveButton").attr("data-value", recipe.id).text("❤️").attr("data-name", recipe.title).attr("data-src", recipe.image);
 
@@ -373,7 +373,7 @@ function renderRecipes() {
             let lineSpacing = $("<br>");
             let nutritionButton = $("<button>").text("Recipe Instructions").addClass("nutritionButton button");
             let equiptmentButton = $("<button>").text("Equiptment Needed").addClass("equipButton button warning");
-            let emptyDiv = $("<div>").addClass("forEquip" + [a]);
+            let emptyDiv = $("<div>").addClass("forEquip" + [a]).addClass("equip12");
             listItemDiv.html(newListItem).append(listItemDiv, listItemImage, lineSpacing, nutritionButton, equiptmentButton, priceButton, emptyDiv);
             $("#savedRecipes").append(listItemDiv);
 
@@ -421,22 +421,19 @@ $(document).on("click", ".nutritionButton", function (event) {
         for (var c = 0; c < nutResponse[0].steps.length; c++) {
             let steps = nutResponse[0].steps[c];
 
-            let mainDiv = $("<div>").addClass("mainDiv1");
+            let mainDiv = $("<div>").addClass("mainDiv");
             let mainDiv2 = $("<div>").addClass("mainDiv1");
-            let stepNumber = $("<h5>").text("Step " + steps.number).add($("<hr>"));
+            let stepNumber = $("<h5>").addClass("testing1").text("Step " + steps.number).add($("<hr>"));
             let stepsInstruction = $("<div>").add($("<h6>").html(steps.step));
-            let equipDiv = $("<div>").addClass("equip1");
-            let ingredDiv = $("<div>").addClass("ingred1");
-            mainDiv.append(stepNumber, stepsInstruction, mainDiv2);
+            mainDiv2.append(stepNumber, stepsInstruction, mainDiv);
 
             for (d = 0; d < steps.equipment.length; d++) {
                 let stepsEquip = steps.equipment[d];
                 let testDiv = $("<div>").addClass("tester");
                 let equipImg = $("<img>").attr("src", "https://spoonacular.com/cdn/equipment_100x100/" + stepsEquip.image).addClass("test").add($("<p>").addClass("pClass").text(stepsEquip.name));
                 testDiv.html(equipImg);
-
                 mainDiv.append(testDiv);
-                $(".forEquip" + positionAt).append(mainDiv);
+                $(".forEquip" + positionAt).append(mainDiv2);
             }
 
             for (var e = 0; e < steps.ingredients.length; e++) {
@@ -451,11 +448,6 @@ $(document).on("click", ".nutritionButton", function (event) {
                 $(".forEquip" + positionAt).append(mainDiv2);
 
             }
-
-
-
-            // mainDiv.append(equipDiv);
-
         }
     })
 })

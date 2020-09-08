@@ -5,6 +5,10 @@
   margin-top: 20px;
 }
 
+#panel4c, #panel3c, #panel2c, #panel1c {
+  background-color:rgb(239, 243, 243);
+}
+
 .mainContainer {
   text-align: center;
 }
@@ -33,14 +37,37 @@
   width: 300px;
 }
 
+.testing1 {
+  text-align: center;
+}
+
 /* #meal {
     text-align: center;
 } */
+
+.mainDiv1 {
+  display: inline-block;
+  width: 80%;
+  margin: 1%;
+  border: solid white;
+  margin:10px;
+  padding:10px;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.equip12 {
+  display: inline-block;
+  border: solid white;
+  background-color: white;
+
+}
 
 .mainDiv2 {
   display: inline-block;
   width: 30%;
   margin: 1%;
+ 
 }
 
 #savedRecipes {
@@ -80,9 +107,16 @@
   display: inline-block;
 }
 
-.equip1 {
-  display: flex;
-}
+.forEquip1 {
+   
+  border: solid white;
+  border-radius: 10px;
+  background-color: white;
+  display: inline-block;
+  align-content: center;
+  justify-content: center;
+
+}  
 
 .tester {
   display: inline-block;
@@ -91,4 +125,9 @@
 
 .foodListItem {
   font-size: 30px;
+}
+
+.recipeIngred {
+  background-color: white;
+  border-radius: 10px;
 }
