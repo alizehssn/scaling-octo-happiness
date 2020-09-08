@@ -6,18 +6,22 @@
 //User can search by products,brands, or both
 //the results are displayed to the user
 
-//Setting the Global Variable for the Result Container
+
 const resultsContainer = document.querySelector("#resultsContainer")
 
 
-//On click event to initiate the searchMakeup Function
+
 $("#searchBy").on("click", function(event) {
     event.preventDefault();
     searchMakeup();
 })
 
 
-//Function To search the API and set HTML
+
+
+
+
+
 
 function searchMakeup() {
     //Setting BaseUrl for API & Blank Arrays for Parameters
@@ -53,38 +57,43 @@ function searchMakeup() {
         console.log(baseUrl)
     }
 
+    // let resultsLength = $("#selectResultsQ").val();
 
     //AJAX Call
 
     $.ajax({
-        url: baseUrl,
-        method: "GET"
-    }).then(function(response) {
-        console.log(response)
-        $("#resultsContainer").empty();
-        if (response.length === 0) {
-            let divEl = $("<div>").text("No Results :(");
-            $("#resultsContainer").append(divEl)
-        } else {
-            //Setting innerHTML elements if results are availble 
-            response.forEach(response => {
-                let brand = response.name;
-                let img = response.image_link;
-                let prod = response.product_type;
-                let cat = response.category;
-                let link = response.product_link
-                let matchedTags = response.tag_list;
+            url: baseUrl,
+            method: "GET"
+        }).then(function(response) {
+                console.log(response)
+                $("#resultsContainer").empty();
+                if (response.length === 0) {
+                    let divEl = $("<div>").text("No Results :(");
+                    $("#resultsContainer").append(divEl)
+                } else {
+                    response.forEach(response => {
+                                let brand = response.name;
+                                let img = response.image_link;
+                                let prod = response.product_type;
+                                let cat = response.category;
+                                let link = response.product_link
+                                let matchedTags = response.tag_list;
 
-                let firstDiv = $("<div class=work-feature-block row>")
-                let secondDiv = $("<div class= columns medium-7>")
-                secondDiv.appendChild("img", img).addClass("work-feature-block-image")
-                let thirdDiv = $("<div class = columns medium-5>")
-                thirdDiv.appendChild("h2", brand).addClass("work-feature-block-header")
-                thirdDiv.appendChild("p", prod)
-                thirdDiv.appendChild("p", cat)
+                                resultsContainer.style.display = "block"
+                                resultsContainer.innerHTML += `<div class='work-feature-block row' style='border-bottom: 10px solid salmon' >
+                                 <div class = 'columns medium-7' >
+                                    <img class = 'work-feature-block-image' src = ${img}/> 
+                                </div> 
+                                <div class = 'columns medium-5'>
+                                <h2 class = 'work-feature-block-header'> ${brand}</h2> 
+                                <p> Product Type: ${prod }</p> 
+                                <p> ${cat}</p>
+                                <h2> Matched Criteria: </h2> 
+                                <ul>
+                                ${matchedTags ? ` <li> ${matchedTags} </li>` : "" }  
+                                </ul>
 
-
-
+                                    <a href = ${link} > Buy Here!</a> `
 
             })
 
