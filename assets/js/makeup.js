@@ -6,22 +6,18 @@
 //User can search by products,brands, or both
 //the results are displayed to the user
 
+//Setting the Global Variable for the Result Container
+const resultsContainer = document.querySelector("#resultsContainer")
 
 
-
-
-
+//On click event to initiate the searchMakeup Function
 $("#searchBy").on("click", function(event) {
     event.preventDefault();
     searchMakeup();
 })
 
 
-
-
-
-
-
+//Function To search the API and set HTML
 
 function searchMakeup() {
     //Setting BaseUrl for API & Blank Arrays for Parameters
@@ -57,7 +53,6 @@ function searchMakeup() {
         console.log(baseUrl)
     }
 
-    // let resultsLength = $("#selectResultsQ").val();
 
     //AJAX Call
 
@@ -70,17 +65,29 @@ function searchMakeup() {
         if (response.length === 0) {
             let divEl = $("<div>").text("No Results :(");
             $("#resultsContainer").append(divEl)
-        }
-        for (var i = 0; i < response.length; i++) {
-            let brand = $("<h1>").html(response[i].name);
-            let img = $("<img>").attr("src", response[i].image_link).attr("style", "width: 300px");
-            let prod = $("<h2>").text(response[i].product_type);
-            let cat = $("<p>").text(response[i].category);
-            let link = $("<a>").attr("href", response[i].product_link).text("Buy Here!");
-            let matchedTags = $("<p>").text(response[i].tag_list);
+        } else {
+            //Setting innerHTML elements if results are availble 
+            response.forEach(response => {
+                let brand = response.name;
+                let img = response.image_link;
+                let prod = response.product_type;
+                let cat = response.category;
+                let link = response.product_link
+                let matchedTags = response.tag_list;
+
+                let firstDiv = $("<div class=work-feature-block row>")
+                let secondDiv = $("<div class= columns medium-7>")
+                secondDiv.appendChild("img", img).addClass("work-feature-block-image")
+                let thirdDiv = $("<div class = columns medium-5>")
+                thirdDiv.appendChild("h2", brand).addClass("work-feature-block-header")
+                thirdDiv.appendChild("p", prod)
+                thirdDiv.appendChild("p", cat)
 
 
-            $("#resultsContainer").append(brand, img, prod, cat, link, matchedTags)
+
+
+            })
+
         }
 
 
