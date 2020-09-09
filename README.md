@@ -20,8 +20,7 @@ All recipes have a ♥ next to the recipe image.  Clicking the ♥ will store th
 <img src="assets/images/recipesaved.png" width="400px"><br>
 
 
-If the user selects “Makeup” from the search navigation, the user is taken to the Makeup
-Investigation page. <br><img src="assets/images/####.png" width="400px"><br> The user can then select which dietary, allergen, or ethical criteria to find
+If the user selects “Makeup” from the search navigation, the user is taken to the Makeup Investigation page. <br><img src="assets/images/makeup.png" width="400px"><br> The user can then select which dietary, allergen, or ethical criteria to find
 makeup products from. The user then is shown drop-down menus with options to search by
 product or brand. The user can then select between 5 and 15 results to pull. When the search
 button is clicked, the application queries the Heroku-Makeup API and returns products from a
