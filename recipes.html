@@ -37,11 +37,12 @@
 
 
 
-    <ul class="tabs" data-active-collapse="true" data-tabs id="collapsing-tabs">
-        <li class="tabs-title is-active"><a href="#panel1c" aria-selected="true">Search Recipes By Ingredients</a></li>
-        <li class="tabs-title"><a href="#panel2c">Search Recipes By Nutrients</a></li>
-        <li class="tabs-title"><a href="#panel3c">Search Random Recipes</a></li>
-        <li class="tabs-title"><a href="#panel4c">Saved Recipes</a></li>
+    <ul class="tabs tabs-page" data-active-collapse="true" data-tabs id="collapsing-tabs">
+        <li class="tabs-title is-active page1"><a href="#panel1c" aria-selected="true">Search Recipes By Ingredients</a>
+        </li>
+        <li class="tabs-title page2"><a href="#panel2c">Search Recipes By Nutrients</a></li>
+        <li class="tabs-title page3"><a href="#panel3c">Search Random Recipes</a></li>
+        <li class="tabs-title page4"><a href="#panel4c">Saved Recipes</a></li>
     </ul>
 
     <div class="tabs-content" data-tabs-content="collapsing-tabs">
@@ -49,33 +50,36 @@
 
         <!-- This is the first tab which is search by nutrients -->
         <div class="tabs-panel is-active" id="panel1c">
-            <h2>Seach Recipes By Ingredients</h2>
-            <form>
-                <div class="grid-container">
-                    <div class="grid-x grid-padding-x">
-                        <div class="medium-6 cell">
-                            <label>Search for a product
-                                <input type="text" placeholder="Apples flour sugar etc" id="searchBar1">
-                                <label>How many recipes to search for?
-                                    <select id="selectRecipes1">
-                                        <option value="1">1</option>
-                                        <option selected value="5">5</option>
-                                        <option value="10">10</option>
-                                    </select>
+            <div class="panel1">
+                <h2 class="second3"> Seach Recipes By Ingredients</h2>
+                <form>
+                    <div class="grid-container">
+                        <div class="grid-x grid-padding-x">
+                            <div class="medium-6 cell">
+                                <label>Search for a product
+                                    <input type="text" placeholder="Apples flour sugar etc" id="searchBar1">
+                                    <label>How many recipes to search for?
+                                        <select id="selectRecipes1">
+                                            <option value="1">1</option>
+                                            <option selected value="5">5</option>
+                                            <option value="10">10</option>
+                                        </select>
+                                    </label>
+                                    <a class="button primary" id="submitButton1">Submit</a>
                                 </label>
-                                <a class="button primary" id="submitButton1">Submit</a>
-                            </label>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </form>
-            <div class="container" id="attachHere1"></div>
+                </form>
+                <div class="container" id="attachHere1"></div>
+            </div>
         </div>
 
 
         <!-- This is for the second tab which is Search by Nutrients -->
         <div class="tabs-panel" id="panel2c">
-            <h2>Seach Recipes By Nutrients</h2>
+
+            <h2 class="second2">Seach Recipes By Nutrients</h2>
             <!-- Dropdown searches start here -->
             <button class="button" type="button" data-toggle="carbs">Carbohydrates </button>
             <div class="dropdown-pane" id="carbs" data-dropdown data-auto-focus="true">
@@ -408,7 +412,7 @@
                             <label>
                                 <fieldset id="dietFilters" class="large-7 cell">
                                     <legend>
-                                        <h3>Search by diet restrictions: </h3>
+                                        <h4>Search by diet restrictions: </h4>
                                     </legend>
                                     <input id="checkbox1" type="checkbox" value="vegan"><label
                                         for="checkbox1">Vegan</label>
@@ -419,8 +423,8 @@
 
                                     <!-- This is for the meal filters -->
                                     <fieldset id="mealFilters" class="large-7 cell">
-                                        <legend>
-                                            <h3 id="meal">Search by Meal: </h3>
+                                        <legend><br>
+                                            <h4 id="meal">Search by Meal: </h4>
                                         </legend>
                                         <input id="checkbox4" type="checkbox" value="breakfast"><label
                                             for="checkbox4">Breakfast</label>
@@ -441,8 +445,8 @@
 
                                         <!-- This is for intolerances filters -->
                                         <fieldset id="intoleranceFilters" class="large-7 cell">
-                                            <legend>
-                                                <h3>Search By Intolerances</h3>
+                                            <legend><br>
+                                                <h4>Search By Intolerances</h4>
                                             </legend>
                                             <input id="checkbox13" type="checkbox" value="dairy"><label
                                                 for="checkbox13">Dairy</label>
@@ -496,13 +500,14 @@
         </div>
         <!-- This is for the 4th tab, Saved Searches -->
         <div class="tabs-panel" id="panel4c">
-            <h2>Saved Searches</h2>
-            <hr>
-            <ul id="savedRecipes">
-                <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+            <div class="finalPage">
+                <h2>Saved Searches</h2>
+                <hr>
+                <ul id="savedRecipes">
+                    <div id="chartContainer" style="height: 300px; width: 100%;"></div>
 
-            </ul>
-
+                </ul>
+            </div>
         </div>
 
 
