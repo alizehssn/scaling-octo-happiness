@@ -1,5 +1,5 @@
-const apiKey = "&apiKey=0ba7a0fdd45c497a8afd81dae904a16c";
-// backup const apiKey = "&apiKey=1db9120bf8854065b69f6e8dba48a42e";
+// var apiKey = "&apiKey=0ba7a0fdd45c497a8afd81dae904a16c";
+var apiKey = "&apiKey=1db9120bf8854065b69f6e8dba48a42e";
 var recipeArray = [];
 var foodObjectItem = {};
 //render items in local storage
@@ -221,7 +221,7 @@ function searchRandomly() {
     let params2 = [];
     let params3 = [];
     let numberOfRecipes3 = $("#selectRecipes3").val()
-    console.log(numberOfRecipes3);
+    // console.log(numberOfRecipes3);
     $("#dietFilters").children("input").each(function () {
         if ($(this).prop("checked") === true) {
             params.push($(this).val());
@@ -254,53 +254,48 @@ function searchRandomly() {
         console.log(queryURL3);
         console.log(response3);
 
-        if (response3) {
 
-            for (var x = 0; x < response3.recipes.length; x++) {
-                let recipe = response3.recipes[x];
-                let mainDiv3 = $("<div>").addClass("mainDiv3");
-                let title3 = $("<h3>").text(recipe.title);
-                let imageEl3 = $("<img>").attr("src", recipe.image).attr("style", "width: 300px").attr("data-name", recipe.id);
-                let badgesDiv = $("<div>");
-                let about3 = $("<div>").html(recipe.summary);
-                let recipeDivEl3 = $("<div>").addClass("recipeIngred").html($("<h4>").text("Ingredients: "));
-                let websiteEl = $("<a>").attr("href", recipe.sourceUrl).attr("target", "_blank").text("Click Here for Full Recipe").add($("<hr>"));
-                let buttonEl = $("<button>").addClass("saveButton").attr("data-value", recipe.id).text("❤️").attr("data-name", recipe.title).attr("data-src", recipe.image);
-                if (recipe.vegan === true) {
-                    let badgesImg = $("<img>").attr("src", "./assets/images/vegan.jpg").attr("style", "width: 100px").attr("style", "height: 100px");
-                    badgesDiv.append(badgesImg);
-                }
-                if (recipe.vegetarian === true) {
-                    let badgesImg = $("<img>").attr("src", "./assets/images/vegetarian.jpg").attr("style", "width: 100px").attr("style", "height: 100px");
-                    badgesDiv.append(badgesImg);
-                }
-                if (recipe.glutenFree === true) {
-                    let badgesImg = $("<img>").attr("src", "./assets/images/glutenFree.jpg").attr("style", "width: 100px").attr("style", "height: 100px");
-                    badgesDiv.append(badgesImg);
-                }
-                if (recipe.dairyFree === true) {
-                    let badgesImg = $("<img>").attr("src", "./assets/images/dairyFree.jpg").attr("style", "width: 100px").attr("style", "height: 100px");
-                    badgesDiv.append(badgesImg);
-                }
-                if (recipe.veryHealthy === true) {
-                    let badgesImg = $("<img>").attr("src", "./assets/images/healthy.jpg").attr("style", "width: 100px").attr("style", "height: 100px");
-                    badgesDiv.append(badgesImg);
-                }
-                for (var y = 0; y < recipe.extendedIngredients.length; y++) {
-                    let smallDivPicture = $("<div>").addClass("smallImages");
-                    let ingredientsImg3 = $("<p>").text(recipe.extendedIngredients[y].amount.toFixed(2) + " " + recipe.extendedIngredients[y].unit).add($("<img>").attr("src", "https://spoonacular.com/cdn/ingredients_100x100/" + recipe.extendedIngredients[y].image)).add($("<p>").text(recipe.extendedIngredients[y].name));
-                    smallDivPicture.html(ingredientsImg3);
-                    recipeDivEl3.append(smallDivPicture);
-                }
-                mainDiv3.append(title3, buttonEl, imageEl3, badgesDiv, about3, recipeDivEl3, websiteEl);
-                $("#attachHere3").append(mainDiv3);
+
+        for (var x = 0; x < response3.recipes.length; x++) {
+            let recipe = response3.recipes[x];
+            let mainDiv3 = $("<div>").addClass("mainDiv3");
+            let title3 = $("<h3>").text(recipe.title);
+            let imageEl3 = $("<img>").attr("src", recipe.image).attr("style", "width: 300px").attr("data-name", recipe.id);
+            let badgesDiv = $("<div>");
+            let about3 = $("<div>").html(recipe.summary);
+            let recipeDivEl3 = $("<div>").addClass("recipeIngred").html($("<h4>").text("Ingredients: "));
+            let websiteEl = $("<a>").attr("href", recipe.sourceUrl).attr("target", "_blank").text("Click Here for Full Recipe").add($("<hr>"));
+            let buttonEl = $("<button>").addClass("saveButton").attr("data-value", recipe.id).text("❤️").attr("data-name", recipe.title).attr("data-src", recipe.image);
+            if (recipe.vegan === true) {
+                let badgesImg = $("<img>").attr("src", "./assets/images/vegan.jpg").attr("style", "width: 100px").attr("style", "height: 100px");
+                badgesDiv.append(badgesImg);
             }
-        } else {
-            let errorForm = $("<form>").addClass("error");
-            let errorDiv = $("<div>").addClass("error").text("Please try a different recipe.");
-            errorForm.html(errorDiv);
-            $(".attachHere3").append(errorForm);
+            if (recipe.vegetarian === true) {
+                let badgesImg = $("<img>").attr("src", "./assets/images/vegetarian.jpg").attr("style", "width: 100px").attr("style", "height: 100px");
+                badgesDiv.append(badgesImg);
+            }
+            if (recipe.glutenFree === true) {
+                let badgesImg = $("<img>").attr("src", "./assets/images/glutenFree.jpg").attr("style", "width: 100px").attr("style", "height: 100px");
+                badgesDiv.append(badgesImg);
+            }
+            if (recipe.dairyFree === true) {
+                let badgesImg = $("<img>").attr("src", "./assets/images/dairyFree.jpg").attr("style", "width: 100px").attr("style", "height: 100px");
+                badgesDiv.append(badgesImg);
+            }
+            if (recipe.veryHealthy === true) {
+                let badgesImg = $("<img>").attr("src", "./assets/images/healthy.jpg").attr("style", "width: 100px").attr("style", "height: 100px");
+                badgesDiv.append(badgesImg);
+            }
+            for (var y = 0; y < recipe.extendedIngredients.length; y++) {
+                let smallDivPicture = $("<div>").addClass("smallImages");
+                let ingredientsImg3 = $("<p>").text(recipe.extendedIngredients[y].amount.toFixed(2) + " " + recipe.extendedIngredients[y].unit).add($("<img>").attr("src", "https://spoonacular.com/cdn/ingredients_100x100/" + recipe.extendedIngredients[y].image)).add($("<p>").text(recipe.extendedIngredients[y].name));
+                smallDivPicture.html(ingredientsImg3);
+                recipeDivEl3.append(smallDivPicture);
+            }
+            mainDiv3.append(title3, buttonEl, imageEl3, badgesDiv, about3, recipeDivEl3, websiteEl);
+            $("#attachHere3").append(mainDiv3);
         }
+
     })
 }
 //This is for saving the recipes in Local Storage
