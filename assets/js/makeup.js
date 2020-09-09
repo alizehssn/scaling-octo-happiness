@@ -25,7 +25,7 @@ $("#searchBy").on("click", function(event) {
 
 function searchMakeup() {
     //Setting BaseUrl for API & Blank Arrays for Parameters
-    let baseUrl = "http://makeup-api.herokuapp.com/api/v1/products.json?"
+    let baseUrl = "https://makeup-api.herokuapp.com/api/v1/products.json?"
     let productTag = [];
     let productBrand = [];
     let productType = [];
