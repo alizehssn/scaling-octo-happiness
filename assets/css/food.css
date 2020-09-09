@@ -26,6 +26,9 @@
 .call2Heading {
     text-align: center;
 }
+.picture:hover {
+    cursor: pointer;
+}
 
 .badges {
     text-align: center;
