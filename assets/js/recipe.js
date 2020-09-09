@@ -62,7 +62,7 @@ $("#submitButton2").on("click", function (event) {
 
 function searchByNutrients() {
     $("#attachHere2").empty();
-    let queryURL2 = "https://api.spoonacular.com/recipes/findByNutrients?" + apiKey;
+    let queryURL2 = "https://api.spoonacular.com/recipes/findByNutrients?random=true" + apiKey;
     let carbsMin = $("#carbsMin").val().toString();
     let carbsMax = $("#carbsMax").val().toString();
     let proteinMin = $("#proteinMin").val().toString();
