@@ -1,4 +1,4 @@
-# 🥦 Vegan Police 🚓
+# 🥦 [Vegan Police](https://alizehssn.github.io/scaling-octo-happiness/) 🚓
 
 <img src="assets/images/cover.png" width="700px"><br>
 
