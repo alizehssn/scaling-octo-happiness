@@ -1,18 +1,17 @@
 # 🥦 Vegan Police 🚓
 
-<img src="assets/images/cover.png" width="500px"><br>
+<img src="assets/images/cover.png" width="700px"><br>
 
 This application was created in order to easily find consumer products that met the dietary and
 allergen restrictions set by the user. Upon opening the application, there is a navigation bar at
 the top of the page in order to search for makeup, food, or recipes. <img src="assets/images/nav.png" width="500px">
 When the user clicks on their respective search criteria, they are taken to the respective
 page of their request.
-*photo of Index*
 
 If the user selects “food products” from the navigation they are shown a search bar in which
 they can enter a product brand. When the product is entered, the application pulls information
-from [Spoonacular Api](https://spoonacular.com/food-api) and returns a product profile displaying the name, brand, allergen info,
-and ingredients of the product.
+from [Spoonacular Api](https://spoonacular.com/food-api) and returns multiple products that match the search description.
+<br><img src="assets/images/food.png" width="400px"><br>Upon clicking on one of the displayed images, it will retrieve the image, allergy information and ingredients for the chosen product. <br><img src="assets/images/food1.png" width="400px">
 
 When the user selects “Recipes” from the search navigation, they are given 3 ways to search for recipes.  Search by ingredients,search by nutrients and to search randomly. When search by ingredients is picked, a simple input box is displayed with a drop down menu to select 1,5 or 10 recipes to search for. <br><img src="assets/images/recipe1.png" width="400px"><br>
 When the search by nutrients is selected, a varirty of nutrition inputs are displayed which allow the user to set a minimum or maximum for a given nutrient.  Above the search button there is an imput whcih allows the user to control how many recipes to search for.   <br><img src="assets/images/recipe2.png" width="400px"><br> The final search option is to search randomly.  There are many checkboxes to choose from ranging from vegan, main course, appetizer, beveverage and bread to name a few.  There is also a secton for the most commom intolerances which allows the user to filter out recipres that contain peanuts, gluten, dairy etc. 
