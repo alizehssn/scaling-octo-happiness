@@ -7,7 +7,7 @@
 //the results are displayed to the user
 
 
-
+const resultsContainer = document.querySelector("#resultsContainer")
 
 
 
@@ -62,25 +62,41 @@ function searchMakeup() {
     //AJAX Call
 
     $.ajax({
-        url: baseUrl,
-        method: "GET"
-    }).then(function(response) {
-        console.log(response)
-        $("#resultsContainer").empty();
-        if (response.length === 0) {
-            let divEl = $("<div>").text("No Results :(");
-            $("#resultsContainer").append(divEl)
-        }
-        for (var i = 0; i < response.length; i++) {
-            let brand = $("<h1>").text(response[i].brand);
-            let img = $("<img>").attr("src", response[i].image_link).attr("style", "width: 300px");
-            let prod = $("<h2>").text(response[i].product_type);
-            let cat = $("<p>").text(response[i].category);
-            let link = $("<p>").text(response[i].product_link);
-            let matchedTags = $("<p>").text(response[i].tag_list);
+            url: baseUrl,
+            method: "GET"
+        }).then(function(response) {
+                console.log(response)
+                $("#resultsContainer").empty();
+                if (response.length === 0) {
+                    let divEl = $("<div>").text("No Results :(");
+                    $("#resultsContainer").append(divEl)
+                } else {
+                    response.forEach(response => {
+                                let brand = response.name;
+                                let img = response.image_link;
+                                let prod = response.product_type;
+                                let cat = response.category;
+                                let link = response.product_link
+                                let matchedTags = response.tag_list;
 
+                                resultsContainer.style.display = "block"
+                                resultsContainer.innerHTML += `<div class='work-feature-block row' style='border-bottom: 10px solid salmon' >
+                                 <div class = 'columns medium-7' >
+                                    <img class = 'work-feature-block-image' src = ${img}/> 
+                                </div> 
+                                <div class = 'columns medium-5'>
+                                <h2 class = 'work-feature-block-header'> ${brand}</h2> 
+                                <p> Product Type: ${prod }</p> 
+                                <p> ${cat}</p>
+                                <h2> Matched Criteria: </h2> 
+                                <ul>
+                                ${matchedTags ? ` <li> ${matchedTags} </li>` : "" }  
+                                </ul>
 
-            $("#resultsContainer").append(brand, img, prod, cat, link, matchedTags)
+                                    <a href = ${link} > Buy Here!</a> `
+
+            })
+
         }
 
 

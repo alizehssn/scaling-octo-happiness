@@ -1,3 +1,32 @@
-body {
-    background-color: palevioletred;
-}
+        body {
+            background-image: url("https://images.pexels.com/photos/1831234/pexels-photo-1831234.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        #resultNumber {
+            display: inline-block;
+            text-align: center;
+        }
+        
+        #resultsContainer {
+            display: none;
+            border: 10px solid salmon;
+            width: 50%;
+            margin: auto;
+        }
+        
+        h1 {
+            font-size: large
+        }
+        
+        h2 {
+            font-size: medium
+        }
+        
+        img {
+            float: left
+        }
+        
+        ul {
+            list-style: none;
+        }
